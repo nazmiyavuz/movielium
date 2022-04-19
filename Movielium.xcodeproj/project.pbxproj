@@ -20,6 +20,7 @@
 		4080A2F8280F240C00AA2DAB /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2F7280F240C00AA2DAB /* MainNavigator.swift */; };
 		4080A2FB280F25A700AA2DAB /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2FA280F25A700AA2DAB /* AppNavigator.swift */; };
 		4080A2FD280F291700AA2DAB /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2FC280F291700AA2DAB /* MovieDetailViewController.swift */; };
+		4080A2FF280F2E4100AA2DAB /* UITableView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2FE280F2E4100AA2DAB /* UITableView+Reusable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		4080A2F7280F240C00AA2DAB /* MainNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigator.swift; sourceTree = "<group>"; };
 		4080A2FA280F25A700AA2DAB /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		4080A2FC280F291700AA2DAB /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		4080A2FE280F2E4100AA2DAB /* UITableView+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Reusable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 		4080A2EC280F194000AA2DAB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4080A2FE280F2E4100AA2DAB /* UITableView+Reusable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				4080A2F4280F1BC400AA2DAB /* Reusable.swift in Sources */,
 				4080A2D6280EE00B00AA2DAB /* MovieListViewController.swift in Sources */,
 				4080A2FB280F25A700AA2DAB /* AppNavigator.swift in Sources */,
+				4080A2FF280F2E4100AA2DAB /* UITableView+Reusable.swift in Sources */,
 				4080A2F6280F1DA900AA2DAB /* StoryboardLoadable.swift in Sources */,
 				4080A2D2280EE00B00AA2DAB /* AppDelegate.swift in Sources */,
 				4080A2D4280EE00B00AA2DAB /* SceneDelegate.swift in Sources */,
