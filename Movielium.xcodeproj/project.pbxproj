@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4080A2D2280EE00B00AA2DAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2D1280EE00B00AA2DAB /* AppDelegate.swift */; };
 		4080A2D4280EE00B00AA2DAB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2D3280EE00B00AA2DAB /* SceneDelegate.swift */; };
-		4080A2D6280EE00B00AA2DAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2D5280EE00B00AA2DAB /* ViewController.swift */; };
+		4080A2D6280EE00B00AA2DAB /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2D5280EE00B00AA2DAB /* MovieListViewController.swift */; };
 		4080A2D9280EE00B00AA2DAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4080A2D7280EE00B00AA2DAB /* Main.storyboard */; };
 		4080A2DB280EE00F00AA2DAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4080A2DA280EE00F00AA2DAB /* Assets.xcassets */; };
 		4080A2DE280EE00F00AA2DAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4080A2DC280EE00F00AA2DAB /* LaunchScreen.storyboard */; };
@@ -18,13 +18,14 @@
 		4080A2F4280F1BC400AA2DAB /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2F3280F1BC400AA2DAB /* Reusable.swift */; };
 		4080A2F6280F1DA900AA2DAB /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2F5280F1DA900AA2DAB /* StoryboardLoadable.swift */; };
 		4080A2F8280F240C00AA2DAB /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2F7280F240C00AA2DAB /* MainNavigator.swift */; };
+		4080A2FB280F25A700AA2DAB /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2FA280F25A700AA2DAB /* AppNavigator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4080A2CE280EE00B00AA2DAB /* Movielium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movielium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4080A2D1280EE00B00AA2DAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4080A2D3280EE00B00AA2DAB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4080A2D5280EE00B00AA2DAB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4080A2D5280EE00B00AA2DAB /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		4080A2D8280EE00B00AA2DAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4080A2DA280EE00F00AA2DAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4080A2DD280EE00F00AA2DAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -34,6 +35,7 @@
 		4080A2F3280F1BC400AA2DAB /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		4080A2F5280F1DA900AA2DAB /* StoryboardLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardLoadable.swift; sourceTree = "<group>"; };
 		4080A2F7280F240C00AA2DAB /* MainNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigator.swift; sourceTree = "<group>"; };
+		4080A2FA280F25A700AA2DAB /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +82,7 @@
 		4080A2E5280F187100AA2DAB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4080A2D5280EE00B00AA2DAB /* ViewController.swift */,
+				4080A2D5280EE00B00AA2DAB /* MovieListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -114,6 +116,7 @@
 				4080A2ED280F194C00AA2DAB /* Logger */,
 				4080A2EE280F19C200AA2DAB /* Helpers */,
 				4080A2EC280F194000AA2DAB /* Extensions */,
+				4080A2F9280F258E00AA2DAB /* Navigator */,
 				4080A2EB280F193800AA2DAB /* Protocol */,
 			);
 			path = Utilities;
@@ -160,6 +163,14 @@
 			children = (
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4080A2F9280F258E00AA2DAB /* Navigator */ = {
+			isa = PBXGroup;
+			children = (
+				4080A2FA280F25A700AA2DAB /* AppNavigator.swift */,
+			);
+			path = Navigator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,7 +246,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4080A2F4280F1BC400AA2DAB /* Reusable.swift in Sources */,
-				4080A2D6280EE00B00AA2DAB /* ViewController.swift in Sources */,
+				4080A2D6280EE00B00AA2DAB /* MovieListViewController.swift in Sources */,
+				4080A2FB280F25A700AA2DAB /* AppNavigator.swift in Sources */,
 				4080A2F6280F1DA900AA2DAB /* StoryboardLoadable.swift in Sources */,
 				4080A2D2280EE00B00AA2DAB /* AppDelegate.swift in Sources */,
 				4080A2D4280EE00B00AA2DAB /* SceneDelegate.swift in Sources */,
@@ -393,7 +405,6 @@
 				INFOPLIST_FILE = Movielium/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -421,7 +432,6 @@
 				INFOPLIST_FILE = Movielium/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
