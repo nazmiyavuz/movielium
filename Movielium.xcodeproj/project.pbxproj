@@ -17,6 +17,7 @@
 		4080A2F2280F1B5600AA2DAB /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2F1280F1B5600AA2DAB /* NibLoadable.swift */; };
 		4080A2F4280F1BC400AA2DAB /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2F3280F1BC400AA2DAB /* Reusable.swift */; };
 		4080A2F6280F1DA900AA2DAB /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2F5280F1DA900AA2DAB /* StoryboardLoadable.swift */; };
+		4080A2F8280F240C00AA2DAB /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2F7280F240C00AA2DAB /* MainNavigator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		4080A2F1280F1B5600AA2DAB /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		4080A2F3280F1BC400AA2DAB /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		4080A2F5280F1DA900AA2DAB /* StoryboardLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardLoadable.swift; sourceTree = "<group>"; };
+		4080A2F7280F240C00AA2DAB /* MainNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				4080A2F1280F1B5600AA2DAB /* NibLoadable.swift */,
 				4080A2F3280F1BC400AA2DAB /* Reusable.swift */,
 				4080A2F5280F1DA900AA2DAB /* StoryboardLoadable.swift */,
+				4080A2F7280F240C00AA2DAB /* MainNavigator.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				4080A2D2280EE00B00AA2DAB /* AppDelegate.swift in Sources */,
 				4080A2D4280EE00B00AA2DAB /* SceneDelegate.swift in Sources */,
 				4080A2F2280F1B5600AA2DAB /* NibLoadable.swift in Sources */,
+				4080A2F8280F240C00AA2DAB /* MainNavigator.swift in Sources */,
 				4080A2F0280F1A9100AA2DAB /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
