@@ -83,17 +83,6 @@ extension NowPlayingMovieTableViewCell: UICollectionViewDelegateFlowLayout{
                       height: collectionView.frame.height)
     }
     
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return <#value#>
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return <#value#>
-//    }
 }
 
 extension NowPlayingMovieTableViewCell: NibReusable {}
