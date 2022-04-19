@@ -15,6 +15,12 @@ class MovieListViewController: UIViewController {
         view.backgroundColor = .systemBlue
     }
 
+    @IBAction func movieDetailButtonPressed(_ sender: UIButton) {
+        Logger.debug("pressed")
+        
+        let appNavigator: AppNavigator = .shared
+        appNavigator.navigate(to: .movieDetail)
+    }
 
 }
 

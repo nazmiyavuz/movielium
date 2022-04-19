@@ -19,6 +19,7 @@
 		4080A2F6280F1DA900AA2DAB /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2F5280F1DA900AA2DAB /* StoryboardLoadable.swift */; };
 		4080A2F8280F240C00AA2DAB /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2F7280F240C00AA2DAB /* MainNavigator.swift */; };
 		4080A2FB280F25A700AA2DAB /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2FA280F25A700AA2DAB /* AppNavigator.swift */; };
+		4080A2FD280F291700AA2DAB /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2FC280F291700AA2DAB /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		4080A2F5280F1DA900AA2DAB /* StoryboardLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardLoadable.swift; sourceTree = "<group>"; };
 		4080A2F7280F240C00AA2DAB /* MainNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigator.swift; sourceTree = "<group>"; };
 		4080A2FA280F25A700AA2DAB /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
+		4080A2FC280F291700AA2DAB /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				4080A2D5280EE00B00AA2DAB /* MovieListViewController.swift */,
+				4080A2FC280F291700AA2DAB /* MovieDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				4080A2F6280F1DA900AA2DAB /* StoryboardLoadable.swift in Sources */,
 				4080A2D2280EE00B00AA2DAB /* AppDelegate.swift in Sources */,
 				4080A2D4280EE00B00AA2DAB /* SceneDelegate.swift in Sources */,
+				4080A2FD280F291700AA2DAB /* MovieDetailViewController.swift in Sources */,
 				4080A2F2280F1B5600AA2DAB /* NibLoadable.swift in Sources */,
 				4080A2F8280F240C00AA2DAB /* MainNavigator.swift in Sources */,
 				4080A2F0280F1A9100AA2DAB /* Logger.swift in Sources */,

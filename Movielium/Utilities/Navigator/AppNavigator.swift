@@ -66,7 +66,7 @@ final class AppNavigator: MainNavigator {
         // MARK: Authentication
             
         case .movieDetail:
-            let viewController = MovieListViewController.instantiate(fromStoryboardNamed: destination.storyboard)
+            let viewController = MovieDetailViewController.instantiate(fromStoryboardNamed: destination.storyboard)
             self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
