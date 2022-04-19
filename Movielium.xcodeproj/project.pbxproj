@@ -25,6 +25,10 @@
 		4080A30A280F524400AA2DAB /* UpcomingMovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A308280F524400AA2DAB /* UpcomingMovieTableViewCell.swift */; };
 		4080A30B280F524400AA2DAB /* UpcomingMovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4080A309280F524400AA2DAB /* UpcomingMovieTableViewCell.xib */; };
 		4080A30D280F628900AA2DAB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A30C280F628900AA2DAB /* UIView+Extension.swift */; };
+		4080A310280F6B0700AA2DAB /* NowPlayingMovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A30E280F6B0700AA2DAB /* NowPlayingMovieTableViewCell.swift */; };
+		4080A311280F6B0700AA2DAB /* NowPlayingMovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4080A30F280F6B0700AA2DAB /* NowPlayingMovieTableViewCell.xib */; };
+		4080A314280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A312280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.swift */; };
+		4080A315280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4080A313280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		4080A308280F524400AA2DAB /* UpcomingMovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMovieTableViewCell.swift; sourceTree = "<group>"; };
 		4080A309280F524400AA2DAB /* UpcomingMovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpcomingMovieTableViewCell.xib; sourceTree = "<group>"; };
 		4080A30C280F628900AA2DAB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		4080A30E280F6B0700AA2DAB /* NowPlayingMovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingMovieTableViewCell.swift; sourceTree = "<group>"; };
+		4080A30F280F6B0700AA2DAB /* NowPlayingMovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowPlayingMovieTableViewCell.xib; sourceTree = "<group>"; };
+		4080A312280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingMovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		4080A313280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowPlayingMovieCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,10 +209,22 @@
 		4080A303280F4A6B00AA2DAB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				4080A316280F71F700AA2DAB /* Home Screen */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4080A316280F71F700AA2DAB /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				4080A30E280F6B0700AA2DAB /* NowPlayingMovieTableViewCell.swift */,
+				4080A30F280F6B0700AA2DAB /* NowPlayingMovieTableViewCell.xib */,
+				4080A312280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.swift */,
+				4080A313280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.xib */,
 				4080A308280F524400AA2DAB /* UpcomingMovieTableViewCell.swift */,
 				4080A309280F524400AA2DAB /* UpcomingMovieTableViewCell.xib */,
 			);
-			path = Cells;
+			path = "Home Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +287,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4080A2DE280EE00F00AA2DAB /* LaunchScreen.storyboard in Resources */,
+				4080A315280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.xib in Resources */,
+				4080A311280F6B0700AA2DAB /* NowPlayingMovieTableViewCell.xib in Resources */,
 				4080A2DB280EE00F00AA2DAB /* Assets.xcassets in Resources */,
 				4080A30B280F524400AA2DAB /* UpcomingMovieTableViewCell.xib in Resources */,
 				4080A2D9280EE00B00AA2DAB /* Main.storyboard in Resources */,
@@ -281,9 +303,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4080A2F4280F1BC400AA2DAB /* Reusable.swift in Sources */,
+				4080A314280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.swift in Sources */,
 				4080A2D6280EE00B00AA2DAB /* HomeViewController.swift in Sources */,
 				4080A301280F2EB300AA2DAB /* UICollectionView+Reusable.swift in Sources */,
 				4080A2FB280F25A700AA2DAB /* AppNavigator.swift in Sources */,
+				4080A310280F6B0700AA2DAB /* NowPlayingMovieTableViewCell.swift in Sources */,
 				4080A30A280F524400AA2DAB /* UpcomingMovieTableViewCell.swift in Sources */,
 				4080A2FF280F2E4100AA2DAB /* UITableView+Reusable.swift in Sources */,
 				4080A2F6280F1DA900AA2DAB /* StoryboardLoadable.swift in Sources */,

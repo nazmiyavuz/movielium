@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     // TableView
     @IBOutlet weak var tableView: UITableView! {
         didSet {
+            tableView.register(cellType: NowPlayingMovieTableViewCell.self)
             tableView.register(cellType: UpcomingMovieTableViewCell.self)
         }
     }
@@ -50,15 +51,25 @@ class HomeViewController: UIViewController {
 // MARK: - DataSource
 
 extension HomeViewController: UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return section == 0 ? 1 : 20
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath) as UpcomingMovieTableViewCell
-        return cell
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as NowPlayingMovieTableViewCell
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as UpcomingMovieTableViewCell
+            return cell
+        }
+        
     }
 }
 
@@ -68,7 +79,7 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return <#CGFloat#>
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return indexPath.section == 0 ? 256 : UITableView.automaticDimension
+    }
 }

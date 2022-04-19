@@ -9,24 +9,11 @@
 import UIKit
 
 @IBDesignable
-class DesignableView: UIView {
-}
-
-@IBDesignable
 class DesignableImageView: UIImageView {
 }
 
-@IBDesignable
-class DesignableButton: UIButton {
-}
-
-@IBDesignable
-class DesignableLabel: UILabel {
-}
-
-// MARK: - Codes of @IBInspectable
-
 extension UIView {
+    
     @IBInspectable
     var cornerRadius: CGFloat {
         get {
