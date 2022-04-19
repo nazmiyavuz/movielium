@@ -13,6 +13,7 @@
 		4080A2D9280EE00B00AA2DAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4080A2D7280EE00B00AA2DAB /* Main.storyboard */; };
 		4080A2DB280EE00F00AA2DAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4080A2DA280EE00F00AA2DAB /* Assets.xcassets */; };
 		4080A2DE280EE00F00AA2DAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4080A2DC280EE00F00AA2DAB /* LaunchScreen.storyboard */; };
+		4080A2F0280F1A9100AA2DAB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2EF280F1A9100AA2DAB /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		4080A2DA280EE00F00AA2DAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4080A2DD280EE00F00AA2DAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4080A2DF280EE00F00AA2DAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4080A2EF280F1A9100AA2DAB /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 		4080A2ED280F194C00AA2DAB /* Logger */ = {
 			isa = PBXGroup;
 			children = (
+				4080A2EF280F1A9100AA2DAB /* Logger.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1330;
+				ORGANIZATIONNAME = "Nazmi Yavuz";
 				TargetAttributes = {
 					4080A2CD280EE00B00AA2DAB = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -221,6 +225,7 @@
 				4080A2D6280EE00B00AA2DAB /* ViewController.swift in Sources */,
 				4080A2D2280EE00B00AA2DAB /* AppDelegate.swift in Sources */,
 				4080A2D4280EE00B00AA2DAB /* SceneDelegate.swift in Sources */,
+				4080A2F0280F1A9100AA2DAB /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
