@@ -56,15 +56,95 @@
 		4080A2D0280EE00B00AA2DAB /* Movielium */ = {
 			isa = PBXGroup;
 			children = (
-				4080A2D1280EE00B00AA2DAB /* AppDelegate.swift */,
-				4080A2D3280EE00B00AA2DAB /* SceneDelegate.swift */,
-				4080A2D5280EE00B00AA2DAB /* ViewController.swift */,
-				4080A2D7280EE00B00AA2DAB /* Main.storyboard */,
-				4080A2DA280EE00F00AA2DAB /* Assets.xcassets */,
-				4080A2DC280EE00F00AA2DAB /* LaunchScreen.storyboard */,
 				4080A2DF280EE00F00AA2DAB /* Info.plist */,
+				4080A2EA280F18D700AA2DAB /* Common */,
+				4080A2E9280F18C400AA2DAB /* Utilities */,
+				4080A2E8280F18BB00AA2DAB /* Models */,
+				4080A2E7280F18AB00AA2DAB /* Services */,
+				4080A2E6280F189A00AA2DAB /* Views */,
+				4080A2E5280F187100AA2DAB /* Controllers */,
 			);
 			path = Movielium;
+			sourceTree = "<group>";
+		};
+		4080A2E5280F187100AA2DAB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4080A2D5280EE00B00AA2DAB /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4080A2E6280F189A00AA2DAB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4080A2DC280EE00F00AA2DAB /* LaunchScreen.storyboard */,
+				4080A2D7280EE00B00AA2DAB /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4080A2E7280F18AB00AA2DAB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4080A2E8280F18BB00AA2DAB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4080A2E9280F18C400AA2DAB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4080A2ED280F194C00AA2DAB /* Logger */,
+				4080A2EE280F19C200AA2DAB /* Helpers */,
+				4080A2EC280F194000AA2DAB /* Extensions */,
+				4080A2EB280F193800AA2DAB /* Protocol */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		4080A2EA280F18D700AA2DAB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4080A2D1280EE00B00AA2DAB /* AppDelegate.swift */,
+				4080A2D3280EE00B00AA2DAB /* SceneDelegate.swift */,
+				4080A2DA280EE00F00AA2DAB /* Assets.xcassets */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4080A2EB280F193800AA2DAB /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		4080A2EC280F194000AA2DAB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4080A2ED280F194C00AA2DAB /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		4080A2EE280F19C200AA2DAB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
