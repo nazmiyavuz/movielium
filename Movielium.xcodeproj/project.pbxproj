@@ -9,21 +9,39 @@
 /* Begin PBXBuildFile section */
 		4080A2D2280EE00B00AA2DAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2D1280EE00B00AA2DAB /* AppDelegate.swift */; };
 		4080A2D4280EE00B00AA2DAB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2D3280EE00B00AA2DAB /* SceneDelegate.swift */; };
-		4080A2D6280EE00B00AA2DAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2D5280EE00B00AA2DAB /* ViewController.swift */; };
+		4080A2D6280EE00B00AA2DAB /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2D5280EE00B00AA2DAB /* MovieListViewController.swift */; };
 		4080A2D9280EE00B00AA2DAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4080A2D7280EE00B00AA2DAB /* Main.storyboard */; };
 		4080A2DB280EE00F00AA2DAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4080A2DA280EE00F00AA2DAB /* Assets.xcassets */; };
 		4080A2DE280EE00F00AA2DAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4080A2DC280EE00F00AA2DAB /* LaunchScreen.storyboard */; };
+		4080A2F0280F1A9100AA2DAB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2EF280F1A9100AA2DAB /* Logger.swift */; };
+		4080A2F2280F1B5600AA2DAB /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2F1280F1B5600AA2DAB /* NibLoadable.swift */; };
+		4080A2F4280F1BC400AA2DAB /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2F3280F1BC400AA2DAB /* Reusable.swift */; };
+		4080A2F6280F1DA900AA2DAB /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2F5280F1DA900AA2DAB /* StoryboardLoadable.swift */; };
+		4080A2F8280F240C00AA2DAB /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2F7280F240C00AA2DAB /* MainNavigator.swift */; };
+		4080A2FB280F25A700AA2DAB /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2FA280F25A700AA2DAB /* AppNavigator.swift */; };
+		4080A2FD280F291700AA2DAB /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2FC280F291700AA2DAB /* MovieDetailViewController.swift */; };
+		4080A2FF280F2E4100AA2DAB /* UITableView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2FE280F2E4100AA2DAB /* UITableView+Reusable.swift */; };
+		4080A301280F2EB300AA2DAB /* UICollectionView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A300280F2EB300AA2DAB /* UICollectionView+Reusable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4080A2CE280EE00B00AA2DAB /* Movielium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movielium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4080A2D1280EE00B00AA2DAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4080A2D3280EE00B00AA2DAB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4080A2D5280EE00B00AA2DAB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4080A2D5280EE00B00AA2DAB /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		4080A2D8280EE00B00AA2DAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4080A2DA280EE00F00AA2DAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4080A2DD280EE00F00AA2DAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4080A2DF280EE00F00AA2DAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4080A2EF280F1A9100AA2DAB /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		4080A2F1280F1B5600AA2DAB /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		4080A2F3280F1BC400AA2DAB /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		4080A2F5280F1DA900AA2DAB /* StoryboardLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardLoadable.swift; sourceTree = "<group>"; };
+		4080A2F7280F240C00AA2DAB /* MainNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigator.swift; sourceTree = "<group>"; };
+		4080A2FA280F25A700AA2DAB /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
+		4080A2FC280F291700AA2DAB /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		4080A2FE280F2E4100AA2DAB /* UITableView+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Reusable.swift"; sourceTree = "<group>"; };
+		4080A300280F2EB300AA2DAB /* UICollectionView+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reusable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +74,112 @@
 		4080A2D0280EE00B00AA2DAB /* Movielium */ = {
 			isa = PBXGroup;
 			children = (
-				4080A2D1280EE00B00AA2DAB /* AppDelegate.swift */,
-				4080A2D3280EE00B00AA2DAB /* SceneDelegate.swift */,
-				4080A2D5280EE00B00AA2DAB /* ViewController.swift */,
-				4080A2D7280EE00B00AA2DAB /* Main.storyboard */,
-				4080A2DA280EE00F00AA2DAB /* Assets.xcassets */,
-				4080A2DC280EE00F00AA2DAB /* LaunchScreen.storyboard */,
 				4080A2DF280EE00F00AA2DAB /* Info.plist */,
+				4080A2EA280F18D700AA2DAB /* Common */,
+				4080A2E9280F18C400AA2DAB /* Utilities */,
+				4080A2E8280F18BB00AA2DAB /* Models */,
+				4080A2E7280F18AB00AA2DAB /* Services */,
+				4080A2E6280F189A00AA2DAB /* Views */,
+				4080A2E5280F187100AA2DAB /* Controllers */,
 			);
 			path = Movielium;
+			sourceTree = "<group>";
+		};
+		4080A2E5280F187100AA2DAB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4080A2D5280EE00B00AA2DAB /* MovieListViewController.swift */,
+				4080A2FC280F291700AA2DAB /* MovieDetailViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4080A2E6280F189A00AA2DAB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4080A2DC280EE00F00AA2DAB /* LaunchScreen.storyboard */,
+				4080A2D7280EE00B00AA2DAB /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4080A2E7280F18AB00AA2DAB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4080A2E8280F18BB00AA2DAB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4080A2E9280F18C400AA2DAB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4080A2ED280F194C00AA2DAB /* Logger */,
+				4080A2EE280F19C200AA2DAB /* Helpers */,
+				4080A2EC280F194000AA2DAB /* Extensions */,
+				4080A2F9280F258E00AA2DAB /* Navigator */,
+				4080A2EB280F193800AA2DAB /* Protocol */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		4080A2EA280F18D700AA2DAB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4080A2D1280EE00B00AA2DAB /* AppDelegate.swift */,
+				4080A2D3280EE00B00AA2DAB /* SceneDelegate.swift */,
+				4080A2DA280EE00F00AA2DAB /* Assets.xcassets */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4080A2EB280F193800AA2DAB /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				4080A2F1280F1B5600AA2DAB /* NibLoadable.swift */,
+				4080A2F3280F1BC400AA2DAB /* Reusable.swift */,
+				4080A2F5280F1DA900AA2DAB /* StoryboardLoadable.swift */,
+				4080A2F7280F240C00AA2DAB /* MainNavigator.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		4080A2EC280F194000AA2DAB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4080A2FE280F2E4100AA2DAB /* UITableView+Reusable.swift */,
+				4080A300280F2EB300AA2DAB /* UICollectionView+Reusable.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4080A2ED280F194C00AA2DAB /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				4080A2EF280F1A9100AA2DAB /* Logger.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		4080A2EE280F19C200AA2DAB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4080A2F9280F258E00AA2DAB /* Navigator */ = {
+			isa = PBXGroup;
+			children = (
+				4080A2FA280F25A700AA2DAB /* AppNavigator.swift */,
+			);
+			path = Navigator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +211,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1330;
+				ORGANIZATIONNAME = "Nazmi Yavuz";
 				TargetAttributes = {
 					4080A2CD280EE00B00AA2DAB = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -138,9 +254,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4080A2D6280EE00B00AA2DAB /* ViewController.swift in Sources */,
+				4080A2F4280F1BC400AA2DAB /* Reusable.swift in Sources */,
+				4080A2D6280EE00B00AA2DAB /* MovieListViewController.swift in Sources */,
+				4080A301280F2EB300AA2DAB /* UICollectionView+Reusable.swift in Sources */,
+				4080A2FB280F25A700AA2DAB /* AppNavigator.swift in Sources */,
+				4080A2FF280F2E4100AA2DAB /* UITableView+Reusable.swift in Sources */,
+				4080A2F6280F1DA900AA2DAB /* StoryboardLoadable.swift in Sources */,
 				4080A2D2280EE00B00AA2DAB /* AppDelegate.swift in Sources */,
 				4080A2D4280EE00B00AA2DAB /* SceneDelegate.swift in Sources */,
+				4080A2FD280F291700AA2DAB /* MovieDetailViewController.swift in Sources */,
+				4080A2F2280F1B5600AA2DAB /* NibLoadable.swift in Sources */,
+				4080A2F8280F240C00AA2DAB /* MainNavigator.swift in Sources */,
+				4080A2F0280F1A9100AA2DAB /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +417,6 @@
 				INFOPLIST_FILE = Movielium/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +444,6 @@
 				INFOPLIST_FILE = Movielium/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
