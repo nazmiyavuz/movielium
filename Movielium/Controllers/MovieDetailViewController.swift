@@ -21,9 +21,9 @@ class MovieDetailViewController: UIViewController {
         view.backgroundColor = .systemPink
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    // change status text colors to white
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     // MARK: - Services
@@ -31,6 +31,11 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Private Functions
     
     // MARK: - Action
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        Logger.debug("pressed")
+        self.navigationController?.popViewController(animated: true)
+    }
     
     // MARK: - Helpers
     
