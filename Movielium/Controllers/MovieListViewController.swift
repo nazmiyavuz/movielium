@@ -8,12 +8,29 @@
 import UIKit
 
 class MovieListViewController: UIViewController {
-
+    // MARK: - Views
+    
+    // MARK: - Properties
+    
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .systemBlue
     }
+    
+    // change status text colors to white
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    // MARK: - Services
+    
+    // MARK: - Private Functions
+    
+    // MARK: - Action
+    
+    // MARK: - Helpers
 
     @IBAction func movieDetailButtonPressed(_ sender: UIButton) {
         Logger.debug("pressed")
