@@ -8,7 +8,14 @@
 import UIKit
 
 class MovieListViewController: UIViewController {
+    
     // MARK: - Views
+    // TableView
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+//            tableView.register(cellType: <#cell#>.self)
+        }
+    }
     
     // MARK: - Properties
     

@@ -97,8 +97,8 @@
 		4080A2E6280F189A00AA2DAB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4080A2DC280EE00F00AA2DAB /* LaunchScreen.storyboard */,
-				4080A2D7280EE00B00AA2DAB /* Main.storyboard */,
+				4080A303280F4A6B00AA2DAB /* Cells */,
+				4080A302280F49C100AA2DAB /* Storyboards */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,6 +180,22 @@
 				4080A2FA280F25A700AA2DAB /* AppNavigator.swift */,
 			);
 			path = Navigator;
+			sourceTree = "<group>";
+		};
+		4080A302280F49C100AA2DAB /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				4080A2DC280EE00F00AA2DAB /* LaunchScreen.storyboard */,
+				4080A2D7280EE00B00AA2DAB /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		4080A303280F4A6B00AA2DAB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
