@@ -29,6 +29,11 @@
 		4080A311280F6B0700AA2DAB /* NowPlayingMovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4080A30F280F6B0700AA2DAB /* NowPlayingMovieTableViewCell.xib */; };
 		4080A314280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A312280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.swift */; };
 		4080A315280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4080A313280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.xib */; };
+		40ADA145280FE76E00A9B97C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADA144280FE76E00A9B97C /* NetworkManager.swift */; };
+		40ADA147280FE7C700A9B97C /* RemoteDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADA146280FE7C700A9B97C /* RemoteDataError.swift */; };
+		40ADA149280FE80F00A9B97C /* CustomAlertPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADA148280FE80F00A9B97C /* CustomAlertPresentable.swift */; };
+		40ADA14B280FFA8900A9B97C /* ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADA14A280FFA8900A9B97C /* ResponseData.swift */; };
+		40ADA14D280FFBF800A9B97C /* NertworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADA14C280FFBF800A9B97C /* NertworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +61,11 @@
 		4080A30F280F6B0700AA2DAB /* NowPlayingMovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowPlayingMovieTableViewCell.xib; sourceTree = "<group>"; };
 		4080A312280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingMovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		4080A313280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowPlayingMovieCollectionViewCell.xib; sourceTree = "<group>"; };
+		40ADA144280FE76E00A9B97C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		40ADA146280FE7C700A9B97C /* RemoteDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataError.swift; sourceTree = "<group>"; };
+		40ADA148280FE80F00A9B97C /* CustomAlertPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertPresentable.swift; sourceTree = "<group>"; };
+		40ADA14A280FFA8900A9B97C /* ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseData.swift; sourceTree = "<group>"; };
+		40ADA14C280FFBF800A9B97C /* NertworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NertworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +121,8 @@
 		4080A2E6280F189A00AA2DAB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4080A303280F4A6B00AA2DAB /* Cells */,
 				4080A302280F49C100AA2DAB /* Storyboards */,
+				4080A303280F4A6B00AA2DAB /* Cells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -120,6 +130,8 @@
 		4080A2E7280F18AB00AA2DAB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				40ADA144280FE76E00A9B97C /* NetworkManager.swift */,
+				40ADA14E2810004700A9B97C /* Error Handling */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -127,6 +139,7 @@
 		4080A2E8280F18BB00AA2DAB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				40ADA14A280FFA8900A9B97C /* ResponseData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -227,6 +240,16 @@
 			path = "Home Screen";
 			sourceTree = "<group>";
 		};
+		40ADA14E2810004700A9B97C /* Error Handling */ = {
+			isa = PBXGroup;
+			children = (
+				40ADA146280FE7C700A9B97C /* RemoteDataError.swift */,
+				40ADA14C280FFBF800A9B97C /* NertworkError.swift */,
+				40ADA148280FE80F00A9B97C /* CustomAlertPresentable.swift */,
+			);
+			path = "Error Handling";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -304,14 +327,19 @@
 			files = (
 				4080A2F4280F1BC400AA2DAB /* Reusable.swift in Sources */,
 				4080A314280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.swift in Sources */,
+				40ADA14B280FFA8900A9B97C /* ResponseData.swift in Sources */,
+				40ADA14D280FFBF800A9B97C /* NertworkError.swift in Sources */,
 				4080A2D6280EE00B00AA2DAB /* HomeViewController.swift in Sources */,
 				4080A301280F2EB300AA2DAB /* UICollectionView+Reusable.swift in Sources */,
 				4080A2FB280F25A700AA2DAB /* AppNavigator.swift in Sources */,
 				4080A310280F6B0700AA2DAB /* NowPlayingMovieTableViewCell.swift in Sources */,
+				40ADA149280FE80F00A9B97C /* CustomAlertPresentable.swift in Sources */,
 				4080A30A280F524400AA2DAB /* UpcomingMovieTableViewCell.swift in Sources */,
 				4080A2FF280F2E4100AA2DAB /* UITableView+Reusable.swift in Sources */,
 				4080A2F6280F1DA900AA2DAB /* StoryboardLoadable.swift in Sources */,
 				4080A2D2280EE00B00AA2DAB /* AppDelegate.swift in Sources */,
+				40ADA147280FE7C700A9B97C /* RemoteDataError.swift in Sources */,
+				40ADA145280FE76E00A9B97C /* NetworkManager.swift in Sources */,
 				4080A30D280F628900AA2DAB /* UIView+Extension.swift in Sources */,
 				4080A2D4280EE00B00AA2DAB /* SceneDelegate.swift in Sources */,
 				4080A2FD280F291700AA2DAB /* MovieDetailViewController.swift in Sources */,
