@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     // MARK: - Views
+    @IBOutlet weak var statusView: UIView!
     // TableView
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -34,7 +35,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        addRefreshControl()
         
         fetchUpcomingMovies(atFirst: true)
     }
@@ -115,24 +115,13 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: - Action
-    @objc func refresh(_ sender: AnyObject) {
-        Logger.info("Refresh is successed")
-        fetchUpcomingMovies(atFirst: false)
-    }
+//    @objc func refresh(_ sender: AnyObject) {
+//        Logger.info("Refresh is successed")
+//        fetchUpcomingMovies(atFirst: false)
+//    }
     
     // MARK: - Helpers
     
-    private func addRefreshControl() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
-        tableView.addSubview(refreshControl)
-        
-        let spinner = UIActivityIndicatorView(style: .medium)
-        spinner.color = UIColor.black
-        spinner.hidesWhenStopped = true
-        tableView.tableFooterView = spinner
-    }
-
 }
 
 // MARK: - DataSource
@@ -173,8 +162,20 @@ extension HomeViewController: UITableViewDelegate {
         return indexPath.section == 0 ? 256 : UITableView.automaticDimension
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentOffsetY = scrollView.contentOffset.y
+        // TODO: Make this property dynamic
+        let limit: CGFloat = 226
+        if statusView.isHidden && contentOffsetY > limit {
+            self.statusView.isHidden = false
+        } else if !statusView.isHidden && contentOffsetY < limit  {
+            self.statusView.isHidden = true
+        }
+    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                    forRowAt indexPath: IndexPath) {
+        
         let reloadingIndex = upcomingMovieList.count - 5
         
         guard reloadingIndex == indexPath.row && !(isAppending ?? false) else { return }
