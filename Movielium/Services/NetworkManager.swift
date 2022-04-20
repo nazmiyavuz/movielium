@@ -14,7 +14,7 @@ typealias APIParameters = [String: String]
 
 final class NetworkManager {
     
-    private typealias RemoteDataResult<Value> = Result<Value, RemoteDataError>
+    typealias RemoteDataResult<Value> = Result<Value, RemoteDataError>
     
     private let dispatchQueueMain: DispatchQueue = .main
     
@@ -45,9 +45,9 @@ final class NetworkManager {
     ///   - url: URL value which is URL.
     ///   - method: [HTTPMethod](x-source-tag://HTTPMethod)
     ///   - parameters: [APIParameters](x-source-tag://APIParameters).
-    ///   - completion: (Result<Data, NetworkError>) -> Void.
-    func fetchData(with url: URL, method: HTTPMethod, parameters: APIParameters,
-                         completionHandler: @escaping (Result<Data, NetworkError>) -> Void) {
+    ///   - completionHandler: (Result<Data, NetworkError>) -> Void.
+    private func fetchData(with url: URL, method: HTTPMethod, parameters: APIParameters,
+                           completionHandler: @escaping (Result<Data, NetworkError>) -> Void) {
         dispatchQueueMain.async { [weak self] in
             guard let request = self?.createRequest(with: url, method: method, parameters: parameters) else {
                 completionHandler(.failure(NetworkError.unknown)); return
@@ -77,40 +77,58 @@ final class NetworkManager {
     private func fetchResponseErrorMessage(with response: URLResponse?, from data: Data?) -> String? {
         let responseCode = getResponseCode(from: response)
         guard responseCode != 200 else { return nil }
-        let object = try? JSONDecoder().decode(ResponseData.self, from: data!)
-        return object?.statusMessage
+        guard let data = data else { return nil }
+
+        let object = try? JSONDecoder().decode(ResponseData.self, from: data)
+        return "\(object?.statusCode ?? 007). \(object?.statusMessage ?? "Unknown Error message")"
     }
     
     private func getResponseCode(from response: URLResponse?) -> Int {
         let response = response as? HTTPURLResponse
+        
+        let data = response?.description
+        Logger.verbose("\(data ?? "response?.description = nil") ")
         return response?.statusCode ?? 400
     }
         
     // MARK: - 3. Fetch Result
-    private func fetchResult<T: Decodable>(
+    
+    
+    /// Generic function to fetch data from .json file which is come from server.
+    ///
+    /// - Parameters:
+    ///   - endpoint: [Endpoint](x-source-tag://Endpoint)
+    ///   - method: [HTTPMethod](x-source-tag://HTTPMethod)
+    ///   - completion: (RemoteDataResult<T>
+    func fetchResult<T: Decodable>(
         endpoint: Endpoint,
         method: HTTPMethod,
-        parameters: APIParameters,
         completion: @escaping (RemoteDataResult<T>) -> Void) {
             
-        guard let url = URL(string: endpoint.urlString) else {
-            completion(.failure(RemoteDataError.unknown)); return
-        }
-        
-        fetchData(with: url, method: method, parameters: parameters) { result in
-            switch result {
-            case .failure(let networkError):
-                completion(.failure(RemoteDataError.known(networkError.localizedDescription)))
-            case .success(let data):
-                do {
-                    let object = try JSONDecoder().decode(T.self, from: data)
-                    completion(.success(object))
-                } catch {
-                    completion(.failure(RemoteDataError.unknown))
+            Logger.verbose(endpoint.urlString)
+            
+            guard let url = URL(string: endpoint.urlString) else {
+                completion(.failure(RemoteDataError.unknown)); return
+            }
+            
+//            guard let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=bf970ea3db4276b576be764116894ed1&language=en-US&page=1") else {
+//                completion(.failure(RemoteDataError.unknown)); return
+//            }
+            
+            fetchData(with: url, method: method, parameters: endpoint.parameters) { result in
+                switch result {
+                case .failure(let networkError):
+                    completion(.failure(RemoteDataError.known(networkError.localizedDescription)))
+                case .success(let data):
+                    do {
+                        let object = try JSONDecoder().decode(T.self, from: data)
+                        completion(.success(object))
+                    } catch {
+                        completion(.failure(RemoteDataError.unknown))
+                    }
                 }
             }
         }
-    }
     
     // MARK: - Parameters
     

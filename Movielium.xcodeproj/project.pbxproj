@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40516A452810445D00C1707F /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40516A442810445D00C1707F /* Secrets.swift */; };
 		4080A2D2280EE00B00AA2DAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2D1280EE00B00AA2DAB /* AppDelegate.swift */; };
 		4080A2D4280EE00B00AA2DAB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2D3280EE00B00AA2DAB /* SceneDelegate.swift */; };
 		4080A2D6280EE00B00AA2DAB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2D5280EE00B00AA2DAB /* HomeViewController.swift */; };
@@ -35,9 +36,11 @@
 		40ADA14B280FFA8900A9B97C /* ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADA14A280FFA8900A9B97C /* ResponseData.swift */; };
 		40ADA14D280FFBF800A9B97C /* NertworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADA14C280FFBF800A9B97C /* NertworkError.swift */; };
 		40B9E5ED281008EB005E7E2E /* Endpoint+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9E5EC281008EB005E7E2E /* Endpoint+Enum.swift */; };
+		40B9E5EF28102C09005E7E2E /* RemoteMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9E5EE28102C09005E7E2E /* RemoteMovieData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		40516A442810445D00C1707F /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		4080A2CE280EE00B00AA2DAB /* Movielium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movielium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4080A2D1280EE00B00AA2DAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4080A2D3280EE00B00AA2DAB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		40ADA14A280FFA8900A9B97C /* ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseData.swift; sourceTree = "<group>"; };
 		40ADA14C280FFBF800A9B97C /* NertworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NertworkError.swift; sourceTree = "<group>"; };
 		40B9E5EC281008EB005E7E2E /* Endpoint+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Endpoint+Enum.swift"; sourceTree = "<group>"; };
+		40B9E5EE28102C09005E7E2E /* RemoteMovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMovieData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40516A43281042C700C1707F /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				40516A442810445D00C1707F /* Secrets.swift */,
+			);
+			path = Secrets;
+			sourceTree = "<group>";
+		};
 		4080A2C5280EE00B00AA2DAB = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				4080A2DF280EE00F00AA2DAB /* Info.plist */,
+				40516A43281042C700C1707F /* Secrets */,
 				4080A2EA280F18D700AA2DAB /* Common */,
 				4080A2E9280F18C400AA2DAB /* Utilities */,
 				4080A2E8280F18BB00AA2DAB /* Models */,
@@ -143,6 +156,7 @@
 			children = (
 				40ADA14A280FFA8900A9B97C /* ResponseData.swift */,
 				40B9E5EC281008EB005E7E2E /* Endpoint+Enum.swift */,
+				40B9E5EE28102C09005E7E2E /* RemoteMovieData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -329,6 +343,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4080A2F4280F1BC400AA2DAB /* Reusable.swift in Sources */,
+				40516A452810445D00C1707F /* Secrets.swift in Sources */,
+				40B9E5EF28102C09005E7E2E /* RemoteMovieData.swift in Sources */,
 				40B9E5ED281008EB005E7E2E /* Endpoint+Enum.swift in Sources */,
 				4080A314280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.swift in Sources */,
 				40ADA14B280FFA8900A9B97C /* ResponseData.swift in Sources */,
