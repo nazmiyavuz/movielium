@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        fetchData()
+        fetchUpcomingMovies()
     }
     
     // change status text colors to white
@@ -35,9 +35,22 @@ class HomeViewController: UIViewController {
     
     // MARK: - Services
     
-    private func fetchData() {
+    private func fetchNowPlayingMovies() {
         networkManager.fetchResult(
             endpoint: .nowPlayingMovies(page: 1)) { (result: Result<RemoteMovieData, RemoteDataError>) in
+                switch result {
+                case .failure(let error):
+                    Logger.error(error.localizedDescription)
+                    
+                case .success(_):
+                    Logger.debug("Success ")
+                }
+            }
+    }
+    
+    private func fetchUpcomingMovies() {
+        networkManager.fetchResult(
+            endpoint: .upcomingMovies(page: 1)) { (result: Result<RemoteMovieData, RemoteDataError>) in
                 switch result {
                 case .failure(let error):
                     Logger.error(error.localizedDescription)

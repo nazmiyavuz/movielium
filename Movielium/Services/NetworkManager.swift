@@ -60,9 +60,6 @@ final class NetworkManager {
     
     private func getResponseCode(from response: URLResponse?) -> Int {
         let response = response as? HTTPURLResponse
-        
-        let data = response?.description
-        Logger.verbose("\(data ?? "response?.description = nil") ")
         return response?.statusCode ?? 400
     }
         
@@ -77,9 +74,7 @@ final class NetworkManager {
     func fetchResult<T: Decodable>(
         endpoint: Endpoint,
         completion: @escaping (RemoteDataResult<T>) -> Void) {
-            
-            Logger.verbose(endpoint.urlString)
-            
+                        
             guard let url = URL(string: endpoint.urlString) else {
                 completion(.failure(RemoteDataError.unknown)); return
             }

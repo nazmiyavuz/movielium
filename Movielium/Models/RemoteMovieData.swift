@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct RemoteMovieData: Codable {
+// MARK: - RemoteMovieData
+struct RemoteMovieData: Decodable {
     let dates: Dates
     let page: Int
     let results: [Movie]
@@ -22,12 +23,12 @@ struct RemoteMovieData: Codable {
 }
 
 // MARK: - Dates
-struct Dates: Codable {
+struct Dates: Decodable {
     let maximum, minimum: String
 }
 
-// MARK: - Result
-struct Movie: Codable {
+// MARK: - Movie
+struct Movie: Decodable {
     let adult: Bool
     let backdropPath: String?
     let genreIDS: [Int]
