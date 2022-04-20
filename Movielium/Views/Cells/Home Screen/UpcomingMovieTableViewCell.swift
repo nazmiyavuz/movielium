@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UpcomingMovieTableViewCell: UITableViewCell {
     
@@ -20,9 +21,16 @@ class UpcomingMovieTableViewCell: UITableViewCell {
     
     var movie: Movie? {
         didSet {
-            titleLabel.text = movie?.shownTitle
-            descriptionLabel.text = movie?.overview
-            dateLabel.text = movie?.releaseDateString
+            guard let movie = movie else {
+                Logger.error("getting movie"); return
+            }
+
+            titleLabel.text = movie.shownTitle
+            descriptionLabel.text = movie.overview
+            dateLabel.text = movie.releaseDateString
+            
+            let urlString =  Endpoint.movieImage(image: movie.backdropPath ?? "").urlString
+            loadMovieImage(with: urlString)
         }
     }
     
@@ -41,6 +49,15 @@ class UpcomingMovieTableViewCell: UITableViewCell {
     }
     
     // MARK: - Services
+    
+    private func loadMovieImage(with urlString: String) {
+        movieImageView.kf.indicatorType = .activity
+        
+        guard let url = URL(string: urlString) else {
+            Logger.error("getting url"); return
+        }
+        movieImageView.kf.setImage(with: url, placeholder: UIImage.moviePlaceholderImage)
+    }
     
     // MARK: - Private Functions
     
