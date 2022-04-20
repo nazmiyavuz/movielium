@@ -8,52 +8,27 @@
 
 import Foundation
 
-/// Body parameters to post
-/// - Tag: APIParameters
-typealias APIParameters = [String: String]
-
 final class NetworkManager {
     
     typealias RemoteDataResult<Value> = Result<Value, RemoteDataError>
     
     private let dispatchQueueMain: DispatchQueue = .main
     
-    // MARK: - HTTPMethods
-    /// - Tag: HTTPMethod
-    enum HTTPMethod: String {
-        case post
-        case get
-    }
     static let shared = NetworkManager()
     
     private init() {}
     
-    // MARK: - 1. Request
-    // 1. Create Request
-    private func createRequest(with url: URL, method: HTTPMethod, parameters: APIParameters) -> URLRequest {
-        var request = URLRequest(url: url)
-        request.httpMethod = method.rawValue.uppercased()
-        let body = handleBody(with: parameters)
-        request.httpBody = body.data(using: .utf8)
-        return request
-    }
-    
-    // MARK: - 2. Data Task
+    // MARK: - 1. Data Task
     // Fetch Data and Create Task
     /// Fetch Data and Create Task with URL
     /// - Parameters:
     ///   - url: URL value which is URL.
-    ///   - method: [HTTPMethod](x-source-tag://HTTPMethod)
-    ///   - parameters: [APIParameters](x-source-tag://APIParameters).
     ///   - completionHandler: (Result<Data, NetworkError>) -> Void.
-    private func fetchData(with url: URL, method: HTTPMethod, parameters: APIParameters,
+    private func fetchData(with url: URL,
                            completionHandler: @escaping (Result<Data, NetworkError>) -> Void) {
+        
         dispatchQueueMain.async { [weak self] in
-            guard let request = self?.createRequest(with: url, method: method, parameters: parameters) else {
-                completionHandler(.failure(NetworkError.unknown)); return
-            }
-            
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 
                 let responseMessage = self?.fetchResponseErrorMessage(with: response, from: data)
                 
@@ -91,18 +66,16 @@ final class NetworkManager {
         return response?.statusCode ?? 400
     }
         
-    // MARK: - 3. Fetch Result
+    // MARK: - 2. Fetch Result
     
     
     /// Generic function to fetch data from .json file which is come from server.
     ///
     /// - Parameters:
     ///   - endpoint: [Endpoint](x-source-tag://Endpoint)
-    ///   - method: [HTTPMethod](x-source-tag://HTTPMethod)
     ///   - completion: (RemoteDataResult<T>
     func fetchResult<T: Decodable>(
         endpoint: Endpoint,
-        method: HTTPMethod,
         completion: @escaping (RemoteDataResult<T>) -> Void) {
             
             Logger.verbose(endpoint.urlString)
@@ -111,11 +84,7 @@ final class NetworkManager {
                 completion(.failure(RemoteDataError.unknown)); return
             }
             
-//            guard let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=bf970ea3db4276b576be764116894ed1&language=en-US&page=1") else {
-//                completion(.failure(RemoteDataError.unknown)); return
-//            }
-            
-            fetchData(with: url, method: method, parameters: endpoint.parameters) { result in
+            fetchData(with: url) { result in
                 switch result {
                 case .failure(let networkError):
                     completion(.failure(RemoteDataError.known(networkError.localizedDescription)))
@@ -130,53 +99,6 @@ final class NetworkManager {
             }
         }
     
-    // MARK: - Parameters
-    
-    /// Creates a percent-escaped, URL encoded query string components from the given key-value pair recursively.
-    ///
-    /// - Parameters:
-    ///   - key:   Key of the query component.
-    ///   - value: Value of the query component.
-    ///
-    /// - Returns: The percent-escaped, URL encoded query string components.
-    private func queryComponents(from dictionary: APIParameters) -> [(String, String)] {
-        return dictionary.map { (escape($0.key), escape("\($0.value)")) }
-    }
-    
-    /// Creates a percent-escaped string following RFC 3986 for a query string key or value.
-    ///
-    /// - Parameter string: `String` to be percent-escaped.
-    ///
-    /// - Returns:          The percent-escaped `String`.
-    public func escape(_ string: String) -> String {
-        string.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? string
-    }
-    
-    private func handleBody(with parameters: APIParameters) -> String {
-        return queryComponents(from: parameters).map { "\($0)=\($1)" }.joined(separator: "&")
-    }
-    
-}
-
-// MARK: - CharacterSet
-extension CharacterSet {
-    /// Creates a CharacterSet from RFC 3986 allowed characters.
-    ///
-    /// RFC 3986 states that the following characters are "reserved" characters.
-    ///
-    /// - General Delimiters: ":", "#", "[", "]", "@", "?", "/"
-    /// - Sub-Delimiters: "!", "$", "&", "'", "(", ")", "*", "+", ",", ";", "="
-    ///
-    /// In RFC 3986 - Section 3.4, it states that the "?" and "/" characters should not be escaped to allow
-    /// query strings to include a URL. Therefore, all "reserved" characters with the exception of "?" and "/"
-    /// should be percent-escaped in the query string.
-    public static let afURLQueryAllowed: CharacterSet = {
-        let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
-        let subDelimitersToEncode = "!$&'()*+,;="
-        let encodableDelimiters = CharacterSet(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
-
-        return CharacterSet.urlQueryAllowed.subtracting(encodableDelimiters)
-    }()
 }
 
 // MARK: - Swift.Result

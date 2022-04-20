@@ -36,20 +36,16 @@ class HomeViewController: UIViewController {
     // MARK: - Services
     
     private func fetchData() {
-        
         networkManager.fetchResult(
-            endpoint: .nowPlayingMovies(page: 1), method: .post) { (result: Result<RemoteMovieData, RemoteDataError>) in
-                
+            endpoint: .nowPlayingMovies(page: 1)) { (result: Result<RemoteMovieData, RemoteDataError>) in
                 switch result {
                 case .failure(let error):
                     Logger.error(error.localizedDescription)
                     
                 case .success(_):
                     Logger.debug("Success ")
-                    
                 }
             }
-        
     }
     
     // MARK: - Private Functions
