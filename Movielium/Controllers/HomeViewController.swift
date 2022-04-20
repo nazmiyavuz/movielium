@@ -24,6 +24,9 @@ class HomeViewController: UIViewController {
     // MARK: - Properties
     private let networkManager: NetworkManager = .shared
     private let dispatchQueueMain: DispatchQueue = .main
+    private let notificationCenter: NotificationCenter = .default
+    // Now Playing Movies
+    private var nowPlayingMovieList: [Movie] = []
     // Upcoming Movies
     private var upcomingPage = 1
     private var upcomingTotalPage: Int?
@@ -35,8 +38,9 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        fetchNowPlayingMovies()
         fetchUpcomingMovies(atFirst: true)
+        configureRefreshControl ()
     }
     
     // change status text colors to white
@@ -48,12 +52,18 @@ class HomeViewController: UIViewController {
     
     private func fetchNowPlayingMovies() {
         networkManager.fetchResult(
-            endpoint: .nowPlayingMovies(page: 1)) { (result: Result<RemoteMovieData, RemoteDataError>) in
+            endpoint: .nowPlayingMovies(page: 1)) { [weak self] (result: Result<RemoteMovieData, RemoteDataError>) in
                 switch result {
                 case .failure(let error):
                     Logger.error(error.localizedDescription)
                     
-                case .success(_):
+                case .success(let data):
+                    
+                    self?.dispatchQueueMain.async {
+                        self?.nowPlayingMovieList = data.movieList
+                        self?.tableView.reloadSections([0], with: .automatic)
+                    }
+                    
                     Logger.debug("Success ")
                 }
             }
@@ -115,13 +125,24 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: - Action
-//    @objc func refresh(_ sender: AnyObject) {
-//        Logger.info("Refresh is successed")
-//        fetchUpcomingMovies(atFirst: false)
-//    }
+    @objc private func handleRefreshControl() {
+        // Update your content…
+        fetchUpcomingMovies(atFirst: true)
+        notificationCenter.post(name: .changeMovieInNowPlayingTableView, object: nil)
+        // Dismiss the refresh control.
+        DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
+        }
+    }
     
     // MARK: - Helpers
     
+    private func configureRefreshControl () {
+        // Add the refresh control to your UIScrollView object.
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(
+            self, action: #selector(handleRefreshControl), for: .valueChanged)
+    }
 }
 
 // MARK: - DataSource
@@ -138,13 +159,17 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
+            
         case 0:
             let cell = tableView.dequeueReusableCell(for: indexPath) as NowPlayingMovieTableViewCell
+            cell.nowPlayingMovieList = nowPlayingMovieList
             return cell
+            
         default:
             let cell = tableView.dequeueReusableCell(for: indexPath) as UpcomingMovieTableViewCell
             cell.movie = upcomingMovieList[indexPath.row]
             return cell
+            
         }
         
     }

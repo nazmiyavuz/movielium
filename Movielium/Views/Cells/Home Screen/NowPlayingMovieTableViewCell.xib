@@ -31,7 +31,7 @@
                             <outlet property="delegate" destination="KGk-i7-Jjw" id="eIa-pK-yWJ"/>
                         </connections>
                     </collectionView>
-                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="20" translatesAutoresizingMaskIntoConstraints="NO" id="qMS-Sw-eJb">
+                    <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="20" translatesAutoresizingMaskIntoConstraints="NO" id="qMS-Sw-eJb">
                         <rect key="frame" x="99.5" y="144" width="202.5" height="26"/>
                     </pageControl>
                 </subviews>
@@ -47,6 +47,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="collectionView" destination="3Pd-xZ-g3w" id="Bhd-wG-v7C"/>
+                <outlet property="pageControl" destination="qMS-Sw-eJb" id="38l-fv-Bdu"/>
             </connections>
             <point key="canvasLocation" x="190.57971014492756" y="119.86607142857142"/>
         </tableViewCell>

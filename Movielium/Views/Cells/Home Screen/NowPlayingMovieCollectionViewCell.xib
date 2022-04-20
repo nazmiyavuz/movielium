@@ -61,6 +61,11 @@
                 </constraint>
             </constraints>
             <size key="customSize" width="509" height="289"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="ykB-Us-Cqb" id="z2d-db-Hi3"/>
+                <outlet property="movieImageView" destination="gLJ-Y6-eCF" id="Miz-t6-jKB"/>
+                <outlet property="titleLabel" destination="GAa-38-BLM" id="L8j-ki-Aqo"/>
+            </connections>
             <point key="canvasLocation" x="49" y="-44"/>
         </collectionViewCell>
     </objects>

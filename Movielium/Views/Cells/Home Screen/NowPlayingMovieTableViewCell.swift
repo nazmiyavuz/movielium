@@ -12,6 +12,8 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
     
     // MARK: - Views
     
+    @IBOutlet weak var pageControl: UIPageControl!
+    
     // Collection View
     private let flowLayout = UICollectionViewFlowLayout()
     @IBOutlet weak var collectionView: UICollectionView! {
@@ -25,6 +27,18 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
     }
     
     // MARK: - Properties
+    private let notificationCenter: NotificationCenter = .default
+    private let networkManager: NetworkManager = .shared
+    private let dispatchQueueMain: DispatchQueue = .main
+    
+    private var shownMovieIndex = 0
+    private var pageNumber = 2
+    
+    var nowPlayingMovieList: [Movie] = [] {
+        didSet {
+            pageControl.numberOfPages = nowPlayingMovieList.count
+        }
+    }
     
     // MARK: - LifeCycle
     
@@ -32,6 +46,8 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        addNotificationObserver()
+        collectionView.reloadData()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -40,24 +56,76 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    deinit {
+        notificationCenter.removeObserver(self, name: .changeMovieInNowPlayingTableView, object: nil)
+    }
+    
     // MARK: - Services
+    
+    private func appendMovies() {
+        networkManager.fetchResult(
+            endpoint: .nowPlayingMovies(page: pageNumber)) { [weak self] (result: Result<RemoteMovieData, RemoteDataError>) in
+                switch result {
+                case .failure(let error):
+                    Logger.error(error.localizedDescription)
+                    
+                case .success(let data):
+                    self?.dispatchQueueMain.async {
+                        self?.appendMovies(with: data.movieList)
+                    }
+                    Logger.debug("Success ")
+                }
+            }
+    }
+    
+    private func appendMovies(with movieList: [Movie]) {
+        
+        let newList = movieList.compactMap { (movie) -> Movie? in
+            let isSameMovie =  nowPlayingMovieList.filter { $0.id == movie.id }.first
+            return isSameMovie == .none ? movie : nil
+        }
+        let firstIndex = nowPlayingMovieList.count
+        let lastIndex = newList.count + firstIndex - 1
+        guard lastIndex >= firstIndex else { return } // Safety check
+        let indexPathList = Array(firstIndex...lastIndex)
+            .map { IndexPath(row: $0, section: 0) }
+        nowPlayingMovieList.append(contentsOf: newList)
+        collectionView.insertItems(at: indexPathList)
+        
+        pageControl.currentPage = firstIndex
+        pageControl.numberOfPages = nowPlayingMovieList.count
+        pageNumber += 1
+    }
     
     // MARK: - Private Functions
     
+    private func addNotificationObserver() {
+        notificationCenter.addObserver(
+            self, selector: #selector(changeMovie),
+            name: .changeMovieInNowPlayingTableView, object: nil)
+    }
+    
     // MARK: - Action
     
+    @objc private func changeMovie(_ notification: Notification) {
+        Logger.info("changeMovie is worked")
+        shownMovieIndex += 1
+        let cell = collectionView.numberOfItems(inSection: 0)
+    }
 }
 
 // MARK: - DataSource
 
 extension NowPlayingMovieTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return nowPlayingMovieList.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(for: indexPath) as NowPlayingMovieCollectionViewCell
+        
+        cell.movie = nowPlayingMovieList[indexPath.row]
         return cell
     }
 }
@@ -67,9 +135,21 @@ extension NowPlayingMovieTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //
     }
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        <#code#>
-//    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard shownMovieIndex == nowPlayingMovieList.count - 5 else { return }
+        appendMovies()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let cgFloatValue = collectionView.contentOffset.x / contentView.frame.width
+        let controlArray = (0...(nowPlayingMovieList.count - 1)).map { CGFloat($0) }
+        // Works to much that's why I'm checking values
+        guard cgFloatValue.controlEqualityAny(controlArray) else { return }
+        let pageIndex = Int(round(cgFloatValue))
+        pageControl.currentPage = Int(pageIndex)
+        shownMovieIndex = pageIndex
+    }
 }
 
 // MARK: - FlowLayout

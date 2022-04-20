@@ -34,20 +34,6 @@ class UpcomingMovieTableViewCell: UITableViewCell {
         }
     }
     
-    // MARK: - LifeCycle
-    
-    // first loading func
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
     // MARK: - Services
     
     private func loadMovieImage(with urlString: String) {
@@ -58,11 +44,6 @@ class UpcomingMovieTableViewCell: UITableViewCell {
         }
         movieImageView.kf.setImage(with: url, placeholder: UIImage.moviePlaceholderImage)
     }
-    
-    // MARK: - Private Functions
-    
-    // MARK: - Action
-    
 }
 
 extension UpcomingMovieTableViewCell: NibReusable {}
