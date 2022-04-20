@@ -34,6 +34,7 @@
 		40ADA149280FE80F00A9B97C /* CustomAlertPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADA148280FE80F00A9B97C /* CustomAlertPresentable.swift */; };
 		40ADA14B280FFA8900A9B97C /* ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADA14A280FFA8900A9B97C /* ResponseData.swift */; };
 		40ADA14D280FFBF800A9B97C /* NertworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADA14C280FFBF800A9B97C /* NertworkError.swift */; };
+		40B9E5ED281008EB005E7E2E /* Endpoint+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9E5EC281008EB005E7E2E /* Endpoint+Enum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		40ADA148280FE80F00A9B97C /* CustomAlertPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertPresentable.swift; sourceTree = "<group>"; };
 		40ADA14A280FFA8900A9B97C /* ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseData.swift; sourceTree = "<group>"; };
 		40ADA14C280FFBF800A9B97C /* NertworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NertworkError.swift; sourceTree = "<group>"; };
+		40B9E5EC281008EB005E7E2E /* Endpoint+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Endpoint+Enum.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				40ADA14A280FFA8900A9B97C /* ResponseData.swift */,
+				40B9E5EC281008EB005E7E2E /* Endpoint+Enum.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4080A2F4280F1BC400AA2DAB /* Reusable.swift in Sources */,
+				40B9E5ED281008EB005E7E2E /* Endpoint+Enum.swift in Sources */,
 				4080A314280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.swift in Sources */,
 				40ADA14B280FFA8900A9B97C /* ResponseData.swift in Sources */,
 				40ADA14D280FFBF800A9B97C /* NertworkError.swift in Sources */,

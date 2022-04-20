@@ -87,9 +87,13 @@ final class NetworkManager {
     }
         
     // MARK: - 3. Fetch Result
-    private func fetchResult<T: Decodable>(urlString: String, method: HTTPMethod, parameters: APIParameters,
-                             completion: @escaping (RemoteDataResult<T>) -> Void) {
-        guard let url = URL(string: urlString) else {
+    private func fetchResult<T: Decodable>(
+        endpoint: Endpoint,
+        method: HTTPMethod,
+        parameters: APIParameters,
+        completion: @escaping (RemoteDataResult<T>) -> Void) {
+            
+        guard let url = URL(string: endpoint.urlString) else {
             completion(.failure(RemoteDataError.unknown)); return
         }
         
@@ -105,7 +109,6 @@ final class NetworkManager {
                     completion(.failure(RemoteDataError.unknown))
                 }
             }
-            
         }
     }
     
