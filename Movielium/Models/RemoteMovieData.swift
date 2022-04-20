@@ -12,11 +12,12 @@ import Foundation
 struct RemoteMovieData: Decodable {
     let dates: Dates
     let page: Int
-    let results: [Movie]
+    let movieList: [Movie]
     let totalPages, totalResults: Int
 
     enum CodingKeys: String, CodingKey {
-        case dates, page, results
+        case dates, page
+        case movieList = "results"
         case totalPages = "total_pages"
         case totalResults = "total_results"
     }
@@ -28,7 +29,8 @@ struct Dates: Decodable {
 }
 
 // MARK: - Movie
-struct Movie: Decodable {
+struct Movie: Decodable, Equatable {
+    // Properties
     let adult: Bool
     let backdropPath: String?
     let genreIDS: [Int]
@@ -41,7 +43,16 @@ struct Movie: Decodable {
     let video: Bool
     let voteAverage: Double
     let voteCount: Int
-
+    
+    // Computed Properties
+    var releaseDateString: String {
+        return releaseDate.getTime(with: "dd.MM.yyyy")
+    }
+    
+    var shownTitle: String {
+        return title + " (" + releaseDate.getTime(with: "yyyy") + ")"
+    }
+    
     enum CodingKeys: String, CodingKey {
         case adult
         case backdropPath = "backdrop_path"
@@ -55,5 +66,9 @@ struct Movie: Decodable {
         case title, video
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+    }
+    
+    static func ==(lhs: Movie, rhs: Movie) -> Bool {
+        return lhs.id == rhs.id
     }
 }

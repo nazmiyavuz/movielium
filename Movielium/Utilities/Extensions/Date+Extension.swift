@@ -10,11 +10,14 @@ import Foundation
 
 extension Optional where Wrapped == Date {
     
-    func getDayMonthYearFormat() -> String {
+    func getTime(with format: String) -> String {
         guard let value = self else { return "" }
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
+        formatter.dateFormat = format
         return formatter.string(from: value)
+        // "dd.MM.yyyy"
     }
+    
+    
     
 }

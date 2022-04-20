@@ -11,8 +11,20 @@ import UIKit
 class UpcomingMovieTableViewCell: UITableViewCell {
     
     // MARK: - Views
+    @IBOutlet weak var movieImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     // MARK: - Properties
+    
+    var movie: Movie? {
+        didSet {
+            titleLabel.text = movie?.shownTitle
+            descriptionLabel.text = movie?.overview
+            dateLabel.text = movie?.releaseDateString
+        }
+    }
     
     // MARK: - LifeCycle
     

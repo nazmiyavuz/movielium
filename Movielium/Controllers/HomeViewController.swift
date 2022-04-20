@@ -18,14 +18,25 @@ class HomeViewController: UIViewController {
         }
     }
     
+    private let refreshControl = UIRefreshControl()
+    
     // MARK: - Properties
     private let networkManager: NetworkManager = .shared
+    private let dispatchQueueMain: DispatchQueue = .main
+    // Upcoming Movies
+    private var upcomingPage = 1
+    private var upcomingTotalPage: Int?
+    private var upcomingMovieList: [Movie] = []
+    private var isAppending: Bool?
+    
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        fetchUpcomingMovies()
+        addRefreshControl()
+        
+        fetchUpcomingMovies(atFirst: true)
     }
     
     // change status text colors to white
@@ -47,31 +58,79 @@ class HomeViewController: UIViewController {
                 }
             }
     }
-    
-    private func fetchUpcomingMovies() {
+        
+    private func fetchUpcomingMovies(atFirst: Bool) {
+        guard handleTotalPageForUpcomingMovies() else { return }
+
         networkManager.fetchResult(
-            endpoint: .upcomingMovies(page: 1)) { (result: Result<RemoteMovieData, RemoteDataError>) in
+            endpoint: .upcomingMovies(page: upcomingPage)) {
+                [weak self] (result: Result<RemoteMovieData, RemoteDataError>) in
+                
                 switch result {
+                    
                 case .failure(let error):
                     Logger.error(error.localizedDescription)
+                    self?.presentCustomAlertPresentableWith(error)
                     
-                case .success(_):
-                    Logger.debug("Success ")
+                case .success(let data):
+                    self?.upcomingTotalPage = data.totalPages
+                    
+                    self?.dispatchQueueMain.async {
+                        self?.addOrAppendMovies(with: data.movieList, atFirst: atFirst)
+                    }
+                    Logger.debug("Success data.totalPages:\(data.totalPages)")
                 }
             }
     }
     
+    private func addOrAppendMovies(with movieList: [Movie], atFirst: Bool) {
+        switch atFirst {
+        case true:
+            upcomingMovieList = movieList
+            tableView.reloadSections([1], with: .automatic)
+            
+        case false:
+            let newList = movieList.compactMap { (movie) -> Movie? in
+                let isSameMovie =  upcomingMovieList.filter { $0.id == movie.id }.first
+                return isSameMovie == .none ? movie : nil
+            }
+            let firstIndex = upcomingMovieList.count
+            let lastIndex = newList.count + firstIndex - 1
+            guard lastIndex >= firstIndex else { return } // Safety check
+            let indexPathList = Array(firstIndex...lastIndex)
+                .map { IndexPath(row: $0, section: 1) }
+            upcomingMovieList.append(contentsOf: newList)
+            tableView.insertRows(at: indexPathList, with: .automatic)
+            
+            isAppending = false
+        }
+        upcomingPage += 1
+    }
+    
     // MARK: - Private Functions
+    /// to prevent unnecessary add upcomingMovies to the tableView
+    private func handleTotalPageForUpcomingMovies() -> Bool {
+        let totalPage = upcomingTotalPage ?? 22
+        return totalPage > upcomingPage
+    }
     
     // MARK: - Action
+    @objc func refresh(_ sender: AnyObject) {
+        Logger.info("Refresh is successed")
+        fetchUpcomingMovies(atFirst: false)
+    }
     
     // MARK: - Helpers
-
-    @IBAction func movieDetailButtonPressed(_ sender: UIButton) {
-        Logger.debug("pressed")
+    
+    private func addRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        tableView.addSubview(refreshControl)
         
-        let appNavigator: AppNavigator = .shared
-        appNavigator.navigate(to: .movieDetail)
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.color = UIColor.black
+        spinner.hidesWhenStopped = true
+        tableView.tableFooterView = spinner
     }
 
 }
@@ -85,7 +144,7 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 1 : 20
+        return section == 0 ? 1 : upcomingMovieList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,6 +154,7 @@ extension HomeViewController: UITableViewDataSource {
             return cell
         default:
             let cell = tableView.dequeueReusableCell(for: indexPath) as UpcomingMovieTableViewCell
+            cell.movie = upcomingMovieList[indexPath.row]
             return cell
         }
         
@@ -105,9 +165,21 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
+        guard indexPath.section == 1 else { return }
+        let movie = upcomingMovieList[indexPath.row]
+        Logger.debug(movie.shownTitle)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return indexPath.section == 0 ? 256 : UITableView.automaticDimension
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
+                   forRowAt indexPath: IndexPath) {
+        let reloadingIndex = upcomingMovieList.count - 5
+        
+        guard reloadingIndex == indexPath.row && !(isAppending ?? false) else { return }
+        isAppending = true
+        fetchUpcomingMovies(atFirst: false)
+    }
+    
 }

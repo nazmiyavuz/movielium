@@ -16,9 +16,9 @@ extension String {
         return formatter.date(from: self)
     }
     
-    func getDayMonthYearFormat() -> String {
+    func getTime(with format: String) -> String {
         let date = self.getDate()
-        return date.getDayMonthYearFormat()
+        return date.getTime(with: format)
     }
     
 }
