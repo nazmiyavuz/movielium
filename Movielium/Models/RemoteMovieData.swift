@@ -45,7 +45,7 @@ struct Movie: Decodable, Equatable {
     let voteCount: Int
     
     // Computed Properties
-    var releaseDateString: String {
+    var shownReleaseDate: String {
         return releaseDate.getTime(with: "dd.MM.yyyy")
     }
     

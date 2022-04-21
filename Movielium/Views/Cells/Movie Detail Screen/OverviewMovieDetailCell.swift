@@ -16,7 +16,12 @@ class OverviewMovieDetailCell: UITableViewCell {
     @IBOutlet weak var movieOverviewLabel: UILabel!
     
     // MARK: - Properties
-    
+    var values: (title: String?, overview: String?)? {
+        didSet {
+            movieTitleLabel.text = values?.title
+            movieOverviewLabel.text = values?.overview
+        }
+    }
     
 }
 

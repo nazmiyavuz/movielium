@@ -18,7 +18,7 @@ struct MovieDetail: Codable {
     let voteAverage: Double
     
     // Computed Properties
-    var releaseDateString: String {
+    var shownReleaseDate: String {
         return releaseDate.getTime(with: "dd.MM.yyyy")
     }
     
@@ -40,7 +40,7 @@ struct MovieDetail: Codable {
         
     }
     
-    init(_ movie: Movie) {
+    init(from movie: Movie) {
         self.init(id: movie.id,
                   title: movie.title,
                   backdropPath: movie.backdropPath,

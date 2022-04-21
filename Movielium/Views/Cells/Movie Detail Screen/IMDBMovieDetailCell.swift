@@ -16,6 +16,13 @@ class IMDBMovieDetailCell: UITableViewCell {
     
     // MARK: - Properties
     
+    var values: (imdb: String?, dateString: String?)? {
+        didSet {
+            IMDBRateLabel.text = values?.imdb
+            releaseDateLabel.text = values?.dateString
+        }
+    }
+    
 }
 
 extension IMDBMovieDetailCell: NibReusable {}

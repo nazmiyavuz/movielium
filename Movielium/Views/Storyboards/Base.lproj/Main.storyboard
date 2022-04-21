@@ -63,7 +63,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umd-k7-b8W">
-                                <rect key="frame" x="8" y="52" width="16" height="16"/>
+                                <rect key="frame" x="8" y="53" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="35F-yu-jnV"/>
                                     <constraint firstAttribute="width" secondItem="umd-k7-b8W" secondAttribute="height" multiplier="1:1" id="HVY-w1-qUU"/>
@@ -95,15 +95,15 @@
                         <viewLayoutGuide key="safeArea" id="KfY-JD-lC0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="EKj-IQ-bVp" firstAttribute="top" secondItem="KfY-JD-lC0" secondAttribute="top" constant="8" id="4cf-Oq-AcX"/>
                             <constraint firstAttribute="trailing" secondItem="adV-UO-DC5" secondAttribute="trailing" id="8d2-Ef-hvA"/>
                             <constraint firstItem="EKj-IQ-bVp" firstAttribute="leading" secondItem="umd-k7-b8W" secondAttribute="trailing" constant="8" id="BX1-yw-HPZ"/>
                             <constraint firstItem="KfY-JD-lC0" firstAttribute="trailing" secondItem="EKj-IQ-bVp" secondAttribute="trailing" constant="32" id="PbQ-44-iNh"/>
                             <constraint firstAttribute="bottom" secondItem="adV-UO-DC5" secondAttribute="bottom" id="WvN-Gw-f3P"/>
-                            <constraint firstItem="umd-k7-b8W" firstAttribute="top" secondItem="KfY-JD-lC0" secondAttribute="top" constant="8" id="cCu-nd-TUQ"/>
                             <constraint firstItem="adV-UO-DC5" firstAttribute="leading" secondItem="5sp-OT-piN" secondAttribute="leading" id="ntz-qM-ICD"/>
+                            <constraint firstItem="umd-k7-b8W" firstAttribute="centerY" secondItem="EKj-IQ-bVp" secondAttribute="centerY" id="swk-Yx-7LH"/>
                             <constraint firstItem="umd-k7-b8W" firstAttribute="leading" secondItem="KfY-JD-lC0" secondAttribute="leading" constant="8" id="xil-iB-lED"/>
                             <constraint firstItem="adV-UO-DC5" firstAttribute="top" secondItem="EKj-IQ-bVp" secondAttribute="bottom" constant="8" symbolic="YES" id="y0V-mC-y64"/>
-                            <constraint firstItem="EKj-IQ-bVp" firstAttribute="top" secondItem="umd-k7-b8W" secondAttribute="top" id="yUR-ZF-1Ko"/>
                         </constraints>
                     </view>
                     <connections>

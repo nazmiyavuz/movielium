@@ -20,7 +20,7 @@ final class AppNavigator: MainNavigator {
     }
     
     enum Destination {
-        case movieDetail(movie: Movie)
+        case movieDetail(detail: MovieDetail)
         
         var storyboard: StoryboardName {
             switch self {
@@ -65,11 +65,11 @@ final class AppNavigator: MainNavigator {
             
         // MARK: Authentication
             
-        case .movieDetail(let movie):
+        case .movieDetail(let detail):
             
             let viewController = MovieDetailViewController
                 .instantiate(fromStoryboardNamed: destination.storyboard)
-            viewController.movie = movie
+            viewController.movieDetail = detail
             self.navigationController?.pushViewController(viewController, animated: true)
         }
     }

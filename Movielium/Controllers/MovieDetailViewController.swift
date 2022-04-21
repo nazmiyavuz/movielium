@@ -24,43 +24,56 @@ class MovieDetailViewController: UIViewController {
     }
     
     // MARK: - Properties
+    private var networkManager: NetworkManager = .shared
     
-    var movie: Movie?
+    var movieDetail: MovieDetail?
     
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    }
-    
-    
-    // change status text colors to white
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        fetchMovieDetailsFromRemote()
     }
     
     // MARK: - Services
     
-    private func showMovie(from movie: Movie?) {
-        guard let movie = movie else {
-            Logger.error("getting movie"); return
+    private func fetchMovieDetailsFromRemote() {
+        guard let detail = movieDetail else {
+            Logger.error("getting movieDetail"); return
         }
         
-        self.movie = movie
-        
+        networkManager.fetchResult(
+            endpoint: .movieDetail(id: detail.id)) {
+                [weak self] (result: Result<MovieDetail, RemoteDataError>) in
+                switch result {
+                case .failure(let error):
+                    Logger.error(error.localizedDescription)
+                    self?.showMovieDetails(from: detail)
+                    
+                case .success(let data):
+                    self?.showMovieDetails(from: data)
+                }
+            }
     }
     
-    // MARK: - Private Functions
+    private func showMovieDetails(from detail: MovieDetail?) {
+        guard let detail = detail else {
+            Logger.error("getting movie"); return
+        }
+        movieDetail = detail
+        
+        DispatchQueue.main.async {
+            self.movieTitleLabel.text = detail.shownTitle
+            self.tableView.reloadData()
+        }
+        
+    }
     
     // MARK: - Action
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        Logger.debug("pressed")
         self.navigationController?.popViewController(animated: true)
     }
-    
-    // MARK: - Helpers
     
 }
 
@@ -76,17 +89,20 @@ extension MovieDetailViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(for: indexPath) as ImageMovieDetailCell
-            
-            
+            let urlString = Endpoint.movieImage(image: movieDetail?.backdropPath ?? "").urlString
+            let url = URL(string: urlString)
+            cell.imageURL = url
             return cell
             
         case 1:
             let cell = tableView.dequeueReusableCell(for: indexPath) as IMDBMovieDetailCell
+            cell.values = ("\(movieDetail?.voteAverage ?? 0)", movieDetail?.shownReleaseDate)
             return cell
             
             
         default:
             let cell = tableView.dequeueReusableCell(for: indexPath) as OverviewMovieDetailCell
+            cell.values = (movieDetail?.shownTitle, movieDetail?.overview)
             return cell
         }
     }
