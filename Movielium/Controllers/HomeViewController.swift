@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol HomeViewControllerDelegate: AnyObject {
+    func performRefreshControl()
+}
+
 class HomeViewController: UIViewController {
     
     // MARK: - Views
@@ -26,6 +30,8 @@ class HomeViewController: UIViewController {
     private let dispatchQueueMain: DispatchQueue = .main
     private let deviceHelper: DeviceHelper = .main
     private let notificationCenter: NotificationCenter = .default
+    
+    weak var delegate: HomeViewControllerDelegate?
     
     // Now Playing Movies
     private var nowPlayingMovieList: [Movie] = []
@@ -85,11 +91,10 @@ class HomeViewController: UIViewController {
                 case .success(let data):
                     self?.maxPageNumberOfNowPlaying = data.totalPages
                     self?.dispatchQueueMain.async {
+                        
                         self?.nowPlayingMovieList = data.movieList
                         self?.tableView.reloadSections([0], with: .automatic)
                     }
-                    
-                    Logger.debug("Success ")
                 }
             }
     }
@@ -150,9 +155,10 @@ class HomeViewController: UIViewController {
     
     // MARK: - Action
     @objc private func handleRefreshControl() {
-        // Update your content…
         fetchUpcomingMovies(atFirst: true)
-        notificationCenter.post(name: .changeMovieInNowPlayingTableView, object: nil)
+        
+        delegate?.performRefreshControl()
+        
         // Dismiss the refresh control.
         DispatchQueue.main.async {
             self.tableView.refreshControl?.endRefreshing()
@@ -168,7 +174,6 @@ class HomeViewController: UIViewController {
     }
     
     private func configureRefreshControl () {
-        // Add the refresh control to your UIScrollView object.
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(
             self, action: #selector(handleRefreshControl), for: .valueChanged)
@@ -204,6 +209,7 @@ extension HomeViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(for: indexPath) as NowPlayingMovieTableViewCell
             cell.nowPlayingMovieList = nowPlayingMovieList
             cell.maximumPageNumber = maxPageNumberOfNowPlaying
+            self.delegate = cell
             return cell
             
         default:

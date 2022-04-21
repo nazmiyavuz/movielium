@@ -11,7 +11,6 @@
 		40516A4A281063B700C1707F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40516A49281063B700C1707F /* String+Extension.swift */; };
 		40516A4C2810640A00C1707F /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40516A4B2810640A00C1707F /* Date+Extension.swift */; };
 		40516A5B2810978A00C1707F /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40516A5A2810978A00C1707F /* UIImage+Extension.swift */; };
-		40516A5E2810AC1000C1707F /* NotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40516A5D2810AC1000C1707F /* NotificationName+Extension.swift */; };
 		40516A602810AE4600C1707F /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40516A5F2810AE4600C1707F /* CGFloat+Extension.swift */; };
 		4080A2D2280EE00B00AA2DAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2D1280EE00B00AA2DAB /* AppDelegate.swift */; };
 		4080A2D4280EE00B00AA2DAB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080A2D3280EE00B00AA2DAB /* SceneDelegate.swift */; };
@@ -58,7 +57,6 @@
 		40516A49281063B700C1707F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		40516A4B2810640A00C1707F /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		40516A5A2810978A00C1707F /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
-		40516A5D2810AC1000C1707F /* NotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extension.swift"; sourceTree = "<group>"; };
 		40516A5F2810AE4600C1707F /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
 		4080A2CE280EE00B00AA2DAB /* Movielium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movielium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4080A2D1280EE00B00AA2DAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -253,7 +251,6 @@
 				40516A49281063B700C1707F /* String+Extension.swift */,
 				40516A4B2810640A00C1707F /* Date+Extension.swift */,
 				40516A5A2810978A00C1707F /* UIImage+Extension.swift */,
-				40516A5D2810AC1000C1707F /* NotificationName+Extension.swift */,
 				40516A5F2810AE4600C1707F /* CGFloat+Extension.swift */,
 			);
 			path = Extensions;
@@ -494,7 +491,6 @@
 				40ADA145280FE76E00A9B97C /* NetworkManager.swift in Sources */,
 				4080A30D280F628900AA2DAB /* UIView+Extension.swift in Sources */,
 				40516A5B2810978A00C1707F /* UIImage+Extension.swift in Sources */,
-				40516A5E2810AC1000C1707F /* NotificationName+Extension.swift in Sources */,
 				4080A2D4280EE00B00AA2DAB /* SceneDelegate.swift in Sources */,
 				4080A2FD280F291700AA2DAB /* MovieDetailViewController.swift in Sources */,
 				4080A2F2280F1B5600AA2DAB /* NibLoadable.swift in Sources */,

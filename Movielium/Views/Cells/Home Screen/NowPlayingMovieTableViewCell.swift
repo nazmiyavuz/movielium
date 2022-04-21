@@ -31,16 +31,25 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
     private let networkManager: NetworkManager = .shared
     private let dispatchQueueMain: DispatchQueue = .main
     
-    private var shownMovieIndex = 0
-    private var pageNumber = 2
+    private var shownMovieIndex: Int = 0
+    private var pageNumber: Int = 2
+    private var isFirstLoading: Bool = true
+    
     
     var nowPlayingMovieList: [Movie] = [] {
         didSet {
-            pageControl.numberOfPages = nowPlayingMovieList.count
+            guard isFirstLoading else { return }
+            dispatchQueueMain.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     
-    var maximumPageNumber: Int?
+    var maximumPageNumber: Int? {
+        didSet {
+            handlePageControlNumber()
+        }
+    }
     
     // MARK: - LifeCycle
     
@@ -48,18 +57,8 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        addNotificationObserver()
-        collectionView.reloadData()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        handlePageControlNumber()
         
-        // Configure the view for the selected state
-    }
-    
-    deinit {
-        notificationCenter.removeObserver(self, name: .changeMovieInNowPlayingTableView, object: nil)
     }
     
     // MARK: - Services
@@ -75,6 +74,7 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
                     Logger.error(error.localizedDescription)
                     
                 case .success(let data):
+                    self?.maximumPageNumber = data.totalPages
                     self?.dispatchQueueMain.async {
                         self?.appendMoviesToCollectionView(with: data.movieList)
                     }
@@ -83,6 +83,7 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
     }
     
     private func appendMoviesToCollectionView(with movieList: [Movie]) {
+        pageNumber += 1
         
         let newList = movieList.compactMap { (movie) -> Movie? in
             let isSameMovie =  nowPlayingMovieList.lazy.filter { $0.id == movie.id }.first
@@ -96,27 +97,19 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
         nowPlayingMovieList.append(contentsOf: newList)
         collectionView.insertItems(at: indexPathList)
         
-        pageControl.currentPage = firstIndex
-        pageControl.numberOfPages = nowPlayingMovieList.count
-        pageNumber += 1
-    }
-    
-    // MARK: - Private Functions
-    
-    // MARK: - Action
-    // TODO: if not necessary then delete it
-    @objc private func changeMovie(_ notification: Notification) {
-        Logger.info("changeMovie is worked")
-        shownMovieIndex += 1
-        let cell = collectionView.numberOfItems(inSection: 0)
     }
     
     // MARK: - Helpers
     
-    private func addNotificationObserver() {
-        notificationCenter.addObserver(
-            self, selector: #selector(changeMovie),
-            name: .changeMovieInNowPlayingTableView, object: nil)
+    private func handlePageControlNumber() {
+        let maxPageNumber = maximumPageNumber ?? 4
+        
+        if pageNumber == maxPageNumber {
+            pageControl.numberOfPages = nowPlayingMovieList.count
+        } else if pageNumber == 2 {
+            pageControl.numberOfPages = nowPlayingMovieList.count * maxPageNumber
+        }
+        
     }
     
     private func handlePageControlMovements(with value: CGFloat) {
@@ -148,7 +141,11 @@ extension NowPlayingMovieTableViewCell: UICollectionViewDataSource {
 // MARK: - Delegate
 extension NowPlayingMovieTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: perform
+        let movie = nowPlayingMovieList[indexPath.row]
+        let movieDetail = MovieDetail(from: movie)
+        let appNavigator: AppNavigator = .shared
+        appNavigator.navigate(to: .movieDetail(detail: movieDetail))
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -172,6 +169,22 @@ extension NowPlayingMovieTableViewCell: UICollectionViewDelegateFlowLayout{
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width,
                       height: collectionView.frame.height)
+    }
+    
+}
+
+// MARK: - HomeViewControllerDelegate
+extension NowPlayingMovieTableViewCell: HomeViewControllerDelegate {
+    
+    func performRefreshControl() {
+        Logger.info("changeMovie is worked")
+        let cellNumber = collectionView.numberOfItems(inSection: 0)
+        shownMovieIndex += 1
+        
+        guard cellNumber > shownMovieIndex else { return } // Safety Check
+        
+        collectionView.scrollToItem(at: [0, shownMovieIndex],
+                                    at: .centeredHorizontally, animated: true)
     }
     
 }
