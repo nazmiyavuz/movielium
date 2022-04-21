@@ -22,6 +22,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="780" id="EJK-6u-yZ5">
+                                <variation key="heightClass=compact-widthClass=compact" constant="928"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="928"/>
                                 <variation key="heightClass=regular-widthClass=regular" constant="744"/>
                             </constraint>
                         </constraints>
