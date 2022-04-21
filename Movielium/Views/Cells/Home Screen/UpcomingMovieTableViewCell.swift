@@ -27,7 +27,7 @@ class UpcomingMovieTableViewCell: UITableViewCell {
 
             titleLabel.text = movie.shownTitle
             descriptionLabel.text = movie.overview
-            dateLabel.text = movie.releaseDateString
+            dateLabel.text = movie.shownReleaseDate
             
             let urlString =  Endpoint.movieImage(image: movie.backdropPath ?? "").urlString
             loadMovieImage(with: urlString)

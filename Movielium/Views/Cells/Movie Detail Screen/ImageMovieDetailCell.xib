@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="197" id="KGk-i7-Jjw" customClass="ImageMovieDetailCell" customModule="Movielium" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="315" height="197"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="315" height="197"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moviePlaceholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="YWN-Ln-w1r">
+                        <rect key="frame" x="0.0" y="0.0" width="315" height="197"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vam-Ta-fQr">
+                        <rect key="frame" x="0.0" y="0.0" width="315" height="197"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Vam-Ta-fQr" firstAttribute="leading" secondItem="YWN-Ln-w1r" secondAttribute="leading" id="6b9-1K-S4P"/>
+                    <constraint firstItem="Vam-Ta-fQr" firstAttribute="trailing" secondItem="YWN-Ln-w1r" secondAttribute="trailing" id="7Eo-mT-gBW"/>
+                    <constraint firstAttribute="trailing" secondItem="YWN-Ln-w1r" secondAttribute="trailing" id="7J5-P1-tVL"/>
+                    <constraint firstItem="YWN-Ln-w1r" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="C2f-MF-WyJ"/>
+                    <constraint firstAttribute="bottom" secondItem="YWN-Ln-w1r" secondAttribute="bottom" id="Oeo-GT-nkH"/>
+                    <constraint firstItem="Vam-Ta-fQr" firstAttribute="top" secondItem="YWN-Ln-w1r" secondAttribute="top" id="tR2-bN-2xP"/>
+                    <constraint firstItem="YWN-Ln-w1r" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="xoy-Dz-RzU"/>
+                    <constraint firstItem="Vam-Ta-fQr" firstAttribute="bottom" secondItem="YWN-Ln-w1r" secondAttribute="bottom" id="zKc-R8-Hex"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="movieImageView" destination="YWN-Ln-w1r" id="r2s-Rw-O8f"/>
+            </connections>
+            <point key="canvasLocation" x="128.2608695652174" y="161.04910714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="moviePlaceholderImage" width="640" height="480"/>
+    </resources>
+</document>

@@ -59,7 +59,7 @@ class HomeViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
+    // MARK: - Handling Orientation
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         let deviceOrientation = deviceHelper.getOrientation()
@@ -221,8 +221,12 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.section == 1 else { return }
+        
         let movie = upcomingMovieList[indexPath.row]
-        Logger.debug(movie.shownTitle)
+        let movieDetail = MovieDetail(from: movie)
+        let appNavigator: AppNavigator = .shared
+        appNavigator.navigate(to: .movieDetail(detail: movieDetail))
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -230,10 +234,10 @@ extension HomeViewController: UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        contentOffsetY = scrollView.contentOffset.y
         
         guard deviceHelper.getOrientation() == .portrait else { return }
         
-        contentOffsetY = scrollView.contentOffset.y
         toggleStatusView()
         
     }
