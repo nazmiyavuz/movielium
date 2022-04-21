@@ -12,27 +12,11 @@ class OverviewMovieDetailCell: UITableViewCell {
     
     // MARK: - Views
     
+    @IBOutlet weak var movieTitleLabel: UILabel!
+    @IBOutlet weak var movieOverviewLabel: UILabel!
+    
     // MARK: - Properties
     
-    // MARK: - LifeCycle
-    
-    // first loading func
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
-    // MARK: - Services
-    
-    // MARK: - Private Functions
-    
-    // MARK: - Action
     
 }
 

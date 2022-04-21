@@ -62,31 +62,65 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="owA-Sb-q5l">
-                                <rect key="frame" x="8" y="44" width="69" height="31"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umd-k7-b8W">
+                                <rect key="frame" x="8" y="52" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="35F-yu-jnV"/>
+                                    <constraint firstAttribute="width" secondItem="umd-k7-b8W" secondAttribute="height" multiplier="1:1" id="HVY-w1-qUU"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system" title="Back"/>
+                                <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="bold"/>
+                                </buttonConfiguration>
                                 <connections>
-                                    <action selector="backButtonPressed:" destination="ttC-Z5-1Fg" eventType="touchUpInside" id="vsw-uy-PcC"/>
+                                    <action selector="backButtonPressed:" destination="ttC-Z5-1Fg" eventType="touchUpInside" id="qVS-ow-3wN"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moonrise Kingdom (2012)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKj-IQ-bVp">
+                                <rect key="frame" x="32" y="52" width="350" height="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="adV-UO-DC5">
+                                <rect key="frame" x="0.0" y="78" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ttC-Z5-1Fg" id="vjG-RD-Urd"/>
+                                    <outlet property="delegate" destination="ttC-Z5-1Fg" id="RqJ-g0-Dme"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KfY-JD-lC0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="owA-Sb-q5l" firstAttribute="top" secondItem="KfY-JD-lC0" secondAttribute="top" id="Wtd-pX-zrJ"/>
-                            <constraint firstItem="owA-Sb-q5l" firstAttribute="leading" secondItem="KfY-JD-lC0" secondAttribute="leading" constant="8" id="gBw-XB-dig"/>
-                            <constraint firstItem="KfY-JD-lC0" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="owA-Sb-q5l" secondAttribute="trailing" symbolic="YES" id="mUd-EE-BED"/>
+                            <constraint firstAttribute="trailing" secondItem="adV-UO-DC5" secondAttribute="trailing" id="8d2-Ef-hvA"/>
+                            <constraint firstItem="EKj-IQ-bVp" firstAttribute="leading" secondItem="umd-k7-b8W" secondAttribute="trailing" constant="8" id="BX1-yw-HPZ"/>
+                            <constraint firstItem="KfY-JD-lC0" firstAttribute="trailing" secondItem="EKj-IQ-bVp" secondAttribute="trailing" constant="32" id="PbQ-44-iNh"/>
+                            <constraint firstAttribute="bottom" secondItem="adV-UO-DC5" secondAttribute="bottom" id="WvN-Gw-f3P"/>
+                            <constraint firstItem="umd-k7-b8W" firstAttribute="top" secondItem="KfY-JD-lC0" secondAttribute="top" constant="8" id="cCu-nd-TUQ"/>
+                            <constraint firstItem="adV-UO-DC5" firstAttribute="leading" secondItem="5sp-OT-piN" secondAttribute="leading" id="ntz-qM-ICD"/>
+                            <constraint firstItem="umd-k7-b8W" firstAttribute="leading" secondItem="KfY-JD-lC0" secondAttribute="leading" constant="8" id="xil-iB-lED"/>
+                            <constraint firstItem="adV-UO-DC5" firstAttribute="top" secondItem="EKj-IQ-bVp" secondAttribute="bottom" constant="8" symbolic="YES" id="y0V-mC-y64"/>
+                            <constraint firstItem="EKj-IQ-bVp" firstAttribute="top" secondItem="umd-k7-b8W" secondAttribute="top" id="yUR-ZF-1Ko"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="movieTitleLabel" destination="EKj-IQ-bVp" id="LZl-Na-hJQ"/>
+                        <outlet property="tableView" destination="adV-UO-DC5" id="xPB-Kj-P3s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGC-rO-LMe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="368" y="75"/>
+            <point key="canvasLocation" x="267" y="75"/>
         </scene>
     </scenes>
     <resources>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

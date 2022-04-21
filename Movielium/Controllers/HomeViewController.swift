@@ -221,6 +221,11 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.section == 1 else { return }
+        
+        let appNavigator: AppNavigator = .shared
+        appNavigator.navigate(to: .movieDetail)
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         let movie = upcomingMovieList[indexPath.row]
         Logger.debug(movie.shownTitle)
     }

@@ -11,6 +11,17 @@ import UIKit
 class MovieDetailViewController: UIViewController {
     
     // MARK: - Views
+    // Custom NavBar
+    @IBOutlet weak var movieTitleLabel: UILabel!
+    
+    // TableView
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.register(cellType: ImageMovieDetailCell.self)
+            tableView.register(cellType: IMDBMovieDetailCell.self)
+            tableView.register(cellType: OverviewMovieDetailCell.self)
+        }
+    }
     
     // MARK: - Properties
     
@@ -18,8 +29,8 @@ class MovieDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPink
     }
+    
     
     // change status text colors to white
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -39,4 +50,37 @@ class MovieDetailViewController: UIViewController {
     
     // MARK: - Helpers
     
+}
+
+// MARK: - DataSource
+
+extension MovieDetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as ImageMovieDetailCell
+            return cell
+            
+        case 1:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as IMDBMovieDetailCell
+            return cell
+            
+            
+        default:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as OverviewMovieDetailCell
+            return cell
+        }
+    }
+}
+// MARK: - Delegate
+
+extension MovieDetailViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return indexPath.row == 0 ? 210 : UITableView.automaticDimension
+    }
 }
