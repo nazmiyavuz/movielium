@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="441" id="KGk-i7-Jjw" customClass="OverviewMovieDetailCell" customModule="Movielium" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="457" height="441"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="457" height="441"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Moonrise Kingdom (2012)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sby-cm-spZ">
+                        <rect key="frame" x="16" y="8" width="425" height="24"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZt-5z-c9N">
+                        <rect key="frame" x="16" y="48" width="425" height="377"/>
+                        <mutableString key="text">Moonrise Kingdom is a 2012 American coming-of-age comedy-drama film directed by Wes Anderson, written by Anderson and Roman Coppola. It features an ensemble cast including Bruce Willis, Edward Norton, Bill Murray, Frances McDormand, Tilda Swinton, Jason Schwartzman, Bob Balaban, Harvey Keitel, and newcomers Jared Gilman and Kara Hayward. Largely set on the fictional New England island of New Penzance, it tells the story of an orphan boy (Gilman) who escapes from a scouting camp to unite with his pen pal and love interest, a girl with aggressive tendencies (Hayward). Feeling alienated from their guardians and shunned by their peers, the lovers abscond to an isolated beach. Meanwhile, the island's police captain (Willis) organizes a search party of scouts and family members to locate the runaways.</mutableString>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="sZt-5z-c9N" secondAttribute="bottom" constant="16" id="2we-Y2-UUU"/>
+                    <constraint firstItem="sZt-5z-c9N" firstAttribute="top" secondItem="Sby-cm-spZ" secondAttribute="bottom" constant="16" id="8JF-5c-Ivf"/>
+                    <constraint firstItem="sZt-5z-c9N" firstAttribute="trailing" secondItem="Sby-cm-spZ" secondAttribute="trailing" id="ONa-Xq-KXp"/>
+                    <constraint firstAttribute="trailing" secondItem="Sby-cm-spZ" secondAttribute="trailing" constant="16" id="Sk0-VC-sd1"/>
+                    <constraint firstItem="sZt-5z-c9N" firstAttribute="leading" secondItem="Sby-cm-spZ" secondAttribute="leading" id="aSD-H2-mOC"/>
+                    <constraint firstItem="Sby-cm-spZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="lxM-8p-BUS"/>
+                    <constraint firstItem="Sby-cm-spZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="lxg-uv-4tC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="movieOverviewLabel" destination="sZt-5z-c9N" id="Olp-Gu-1th"/>
+                <outlet property="movieTitleLabel" destination="Sby-cm-spZ" id="3Tn-Jt-Ua3"/>
+            </connections>
+            <point key="canvasLocation" x="442.75362318840581" y="161.71875"/>
+        </tableViewCell>
+    </objects>
+</document>
