@@ -110,6 +110,11 @@ class HomeViewController: UIViewController {
                     
                 case .failure(let error):
                     Logger.error(error.localizedDescription)
+                    
+                    self?.dispatchQueueMain.async {
+                        self?.tableView.reloadData()
+                    }
+                    
                     self?.presentCustomAlertPresentableWith(error)
                     
                 case .success(let data):
