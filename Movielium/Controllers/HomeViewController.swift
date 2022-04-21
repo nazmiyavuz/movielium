@@ -221,9 +221,9 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.section == 1 else { return }
-        
+        let movie = upcomingMovieList[indexPath.row]
         let appNavigator: AppNavigator = .shared
-        appNavigator.navigate(to: .movieDetail)
+        appNavigator.navigate(to: .movieDetail(movie: movie))
         tableView.deselectRow(at: indexPath, animated: true)
         
         let movie = upcomingMovieList[indexPath.row]

@@ -25,10 +25,13 @@ class MovieDetailViewController: UIViewController {
     
     // MARK: - Properties
     
+    var movie: Movie?
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     
@@ -38,6 +41,15 @@ class MovieDetailViewController: UIViewController {
     }
     
     // MARK: - Services
+    
+    private func showMovie(from movie: Movie?) {
+        guard let movie = movie else {
+            Logger.error("getting movie"); return
+        }
+        
+        self.movie = movie
+        
+    }
     
     // MARK: - Private Functions
     
@@ -60,9 +72,12 @@ extension MovieDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(for: indexPath) as ImageMovieDetailCell
+            
+            
             return cell
             
         case 1:

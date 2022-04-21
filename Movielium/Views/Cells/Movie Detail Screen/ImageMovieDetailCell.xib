@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="315" height="197"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firstMovieImage" translatesAutoresizingMaskIntoConstraints="NO" id="YWN-Ln-w1r">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moviePlaceholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="YWN-Ln-w1r">
                         <rect key="frame" x="0.0" y="0.0" width="315" height="197"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -48,6 +48,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="firstMovieImage" width="375" height="256"/>
+        <image name="moviePlaceholderImage" width="640" height="480"/>
     </resources>
 </document>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ImageMovieDetailCell: UITableViewCell {
     
@@ -15,6 +16,17 @@ class ImageMovieDetailCell: UITableViewCell {
     @IBOutlet weak var movieImageView: UIImageView!
     
     // MARK: - Properties
+    
+    var imageURL: URL? {
+        didSet {
+            guard let imageURL = imageURL else {
+                Logger.error("getting imageURLString"); return
+            }
+            movieImageView.kf.indicatorType = .activity
+            movieImageView.kf.setImage(with: imageURL,
+                                       placeholder: UIImage.moviePlaceholderImage)
+        }
+    }
     
 }
 
