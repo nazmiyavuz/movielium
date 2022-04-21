@@ -10,6 +10,7 @@ import Foundation
 
 enum Logger {
     enum LogLevel {
+        case verbose
         case info
         case debug
         case warning
@@ -17,10 +18,11 @@ enum Logger {
         
         fileprivate var prefix: String {
             switch self {
-            case .info: return "LOGGER.INFO 💚"
-            case .debug: return "LOGGER.DEBUG 💙"
+            case .verbose: return "LOGGER.VERBOSE 💜"
+            case .info:    return "LOGGER.INFO 💚"
+            case .debug:   return "LOGGER.DEBUG 💙"
             case .warning: return "LOGGER.WARNING 🧡"
-            case .error: return "LOGGER.ERROR 💔"
+            case .error:   return "LOGGER.ERROR 💔"
             }
         }
     }
@@ -31,6 +33,12 @@ enum Logger {
         var description: String {
             return "\((file as NSString).lastPathComponent):\(line) \(function)"
         }
+    }
+    
+    static func verbose(_ message: @autoclosure () -> Any, shouldLogContext: Bool = true, file: String = #file,
+                     line: Int = #line, function: String = #function) {
+        let context = Context(file: file, function: function, line: line)
+        Logger.handleLog(level: .verbose, message: message(), shouldLogContext: shouldLogContext, context: context)
     }
     
     static func info(_ message: @autoclosure () -> Any, shouldLogContext: Bool = true, file: String = #file,

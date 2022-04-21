@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -8,36 +8,51 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Movie List View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="MovieListViewController" id="BYZ-38-t0r" customClass="MovieListViewController" customModule="Movielium" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="BYZ-38-t0r" customClass="HomeViewController" customModule="Movielium" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fF-9y-1QA">
-                                <rect key="frame" x="135.5" y="432.5" width="143" height="31"/>
-                                <color key="backgroundColor" systemColor="systemRedColor"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Go to Movie Detail"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yvt-Jv-n5i">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                 <connections>
-                                    <action selector="movieDetailButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Iju-0G-33b"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="UeW-Hw-crM"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="uWx-Hf-x70"/>
                                 </connections>
-                            </button>
+                            </tableView>
+                            <view hidden="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gHe-ZL-O0l">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="36"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="Gqg-el-YvQ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="8fF-9y-1QA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4cN-x7-8I0"/>
-                            <constraint firstItem="8fF-9y-1QA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hPL-UT-br9"/>
+                            <constraint firstAttribute="trailing" secondItem="gHe-ZL-O0l" secondAttribute="trailing" id="3i1-PI-Mae"/>
+                            <constraint firstItem="gHe-ZL-O0l" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5Oj-x5-yI0"/>
+                            <constraint firstItem="Yvt-Jv-n5i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="HvP-Y3-TbR"/>
+                            <constraint firstItem="Yvt-Jv-n5i" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="as2-dH-1lc"/>
+                            <constraint firstItem="Yvt-Jv-n5i" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ebK-Rs-e9h"/>
+                            <constraint firstItem="gHe-ZL-O0l" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="qVz-HO-Vf0"/>
+                            <constraint firstAttribute="bottom" secondItem="Yvt-Jv-n5i" secondAttribute="bottom" id="ywk-vf-s7Y"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="statusView" destination="gHe-ZL-O0l" id="g8F-zO-4W5"/>
+                        <outlet property="tableView" destination="Yvt-Jv-n5i" id="0Fc-Z1-9RU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-365" y="75"/>
+            <point key="canvasLocation" x="-365.21739130434787" y="75"/>
         </scene>
         <!--Movie Detail View Controller-->
         <scene sceneID="mRP-jr-epB">
@@ -61,6 +76,7 @@
                         <constraints>
                             <constraint firstItem="owA-Sb-q5l" firstAttribute="top" secondItem="KfY-JD-lC0" secondAttribute="top" id="Wtd-pX-zrJ"/>
                             <constraint firstItem="owA-Sb-q5l" firstAttribute="leading" secondItem="KfY-JD-lC0" secondAttribute="leading" constant="8" id="gBw-XB-dig"/>
+                            <constraint firstItem="KfY-JD-lC0" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="owA-Sb-q5l" secondAttribute="trailing" symbolic="YES" id="mUd-EE-BED"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -73,9 +89,6 @@
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -49,7 +49,7 @@ final class AppNavigator: MainNavigator {
         window = UIWindow(windowScene: windowScene)
         switch screen {
         case .movieList:
-            let viewController = MovieListViewController.instantiate(fromStoryboardNamed: screen.storyboard)
+            let viewController = HomeViewController.instantiate(fromStoryboardNamed: screen.storyboard)
             let navigationController = UINavigationController(rootViewController: viewController)
             self.navigationController = navigationController
         }
