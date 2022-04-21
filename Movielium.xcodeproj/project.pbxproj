@@ -40,6 +40,7 @@
 		40ADA149280FE80F00A9B97C /* CustomAlertPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADA148280FE80F00A9B97C /* CustomAlertPresentable.swift */; };
 		40ADA14B280FFA8900A9B97C /* ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADA14A280FFA8900A9B97C /* ResponseData.swift */; };
 		40ADA14D280FFBF800A9B97C /* NertworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADA14C280FFBF800A9B97C /* NertworkError.swift */; };
+		40B4A4572811295D0070AF34 /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B4A4562811295D0070AF34 /* DeviceHelper.swift */; };
 		40B9E5ED281008EB005E7E2E /* Endpoint+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9E5EC281008EB005E7E2E /* Endpoint+Enum.swift */; };
 		40B9E5EF28102C09005E7E2E /* RemoteMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B9E5EE28102C09005E7E2E /* RemoteMovieData.swift */; };
 		9E9288BE137426F53024FA81 /* Pods_Movielium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5079B2313AA7EEB3DAA57291 /* Pods_Movielium.framework */; };
@@ -81,6 +82,7 @@
 		40ADA148280FE80F00A9B97C /* CustomAlertPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertPresentable.swift; sourceTree = "<group>"; };
 		40ADA14A280FFA8900A9B97C /* ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseData.swift; sourceTree = "<group>"; };
 		40ADA14C280FFBF800A9B97C /* NertworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NertworkError.swift; sourceTree = "<group>"; };
+		40B4A4562811295D0070AF34 /* DeviceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceHelper.swift; sourceTree = "<group>"; };
 		40B9E5EC281008EB005E7E2E /* Endpoint+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Endpoint+Enum.swift"; sourceTree = "<group>"; };
 		40B9E5EE28102C09005E7E2E /* RemoteMovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMovieData.swift; sourceTree = "<group>"; };
 		41F09B13EE1172D38B1E6F46 /* Pods-Movielium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movielium.debug.xcconfig"; path = "Target Support Files/Pods-Movielium/Pods-Movielium.debug.xcconfig"; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 		4080A2EE280F19C200AA2DAB /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				40B4A4562811295D0070AF34 /* DeviceHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				4080A314280F6BF800AA2DAB /* NowPlayingMovieCollectionViewCell.swift in Sources */,
 				40516A602810AE4600C1707F /* CGFloat+Extension.swift in Sources */,
 				40ADA14B280FFA8900A9B97C /* ResponseData.swift in Sources */,
+				40B4A4572811295D0070AF34 /* DeviceHelper.swift in Sources */,
 				40ADA14D280FFBF800A9B97C /* NertworkError.swift in Sources */,
 				4080A2D6280EE00B00AA2DAB /* HomeViewController.swift in Sources */,
 				40516A4A281063B700C1707F /* String+Extension.swift in Sources */,

@@ -11,7 +11,7 @@ import UIKit
 extension CGFloat {
     
     /// Control equality
-    /// - Parameter list: [Double]
+    /// - Parameter list: [CGFloat]
     /// - Returns: boolean value true or false
     func controlEqualityAny(_ list: [CGFloat]) -> Bool {
         for number in list where number == self {

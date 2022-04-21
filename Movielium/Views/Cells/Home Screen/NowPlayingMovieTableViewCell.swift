@@ -40,6 +40,8 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
         }
     }
     
+    var maximumPageNumber: Int?
+    
     // MARK: - LifeCycle
     
     // first loading func
@@ -63,6 +65,9 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
     // MARK: - Services
     
     private func appendMovies() {
+        
+        guard pageNumber <= (maximumPageNumber ?? 2) else { return } // Safety Check
+        
         networkManager.fetchResult(
             endpoint: .nowPlayingMovies(page: pageNumber)) { [weak self] (result: Result<RemoteMovieData, RemoteDataError>) in
                 switch result {
@@ -71,17 +76,16 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
                     
                 case .success(let data):
                     self?.dispatchQueueMain.async {
-                        self?.appendMovies(with: data.movieList)
+                        self?.appendMoviesToCollectionView(with: data.movieList)
                     }
-                    Logger.debug("Success ")
                 }
             }
     }
     
-    private func appendMovies(with movieList: [Movie]) {
+    private func appendMoviesToCollectionView(with movieList: [Movie]) {
         
         let newList = movieList.compactMap { (movie) -> Movie? in
-            let isSameMovie =  nowPlayingMovieList.filter { $0.id == movie.id }.first
+            let isSameMovie =  nowPlayingMovieList.lazy.filter { $0.id == movie.id }.first
             return isSameMovie == .none ? movie : nil
         }
         let firstIndex = nowPlayingMovieList.count
@@ -99,18 +103,29 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
     
     // MARK: - Private Functions
     
+    // MARK: - Action
+    // TODO: if not necessary then delete it
+    @objc private func changeMovie(_ notification: Notification) {
+        Logger.info("changeMovie is worked")
+        shownMovieIndex += 1
+        let cell = collectionView.numberOfItems(inSection: 0)
+    }
+    
+    // MARK: - Helpers
+    
     private func addNotificationObserver() {
         notificationCenter.addObserver(
             self, selector: #selector(changeMovie),
             name: .changeMovieInNowPlayingTableView, object: nil)
     }
     
-    // MARK: - Action
-    
-    @objc private func changeMovie(_ notification: Notification) {
-        Logger.info("changeMovie is worked")
-        shownMovieIndex += 1
-        let cell = collectionView.numberOfItems(inSection: 0)
+    private func handlePageControlMovements(with value: CGFloat) {
+        let controlArray = (0...(nowPlayingMovieList.count - 1)).map { CGFloat($0) }
+        // Works to much that's why I'm checking values
+        guard value.controlEqualityAny(controlArray) else { return }
+        let pageIndex = Int(round(value))
+        pageControl.currentPage = Int(pageIndex)
+        shownMovieIndex = pageIndex
     }
 }
 
@@ -133,7 +148,7 @@ extension NowPlayingMovieTableViewCell: UICollectionViewDataSource {
 // MARK: - Delegate
 extension NowPlayingMovieTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //
+        // TODO: perform
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -143,13 +158,9 @@ extension NowPlayingMovieTableViewCell: UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let cgFloatValue = collectionView.contentOffset.x / contentView.frame.width
-        let controlArray = (0...(nowPlayingMovieList.count - 1)).map { CGFloat($0) }
-        // Works to much that's why I'm checking values
-        guard cgFloatValue.controlEqualityAny(controlArray) else { return }
-        let pageIndex = Int(round(cgFloatValue))
-        pageControl.currentPage = Int(pageIndex)
-        shownMovieIndex = pageIndex
+        handlePageControlMovements(with: cgFloatValue)
     }
+    
 }
 
 // MARK: - FlowLayout

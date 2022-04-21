@@ -24,14 +24,20 @@ class HomeViewController: UIViewController {
     // MARK: - Properties
     private let networkManager: NetworkManager = .shared
     private let dispatchQueueMain: DispatchQueue = .main
+    private let deviceHelper: DeviceHelper = .main
     private let notificationCenter: NotificationCenter = .default
+    
     // Now Playing Movies
     private var nowPlayingMovieList: [Movie] = []
+    private var maxPageNumberOfNowPlaying: Int?
     // Upcoming Movies
     private var upcomingPage = 1
     private var upcomingTotalPage: Int?
     private var upcomingMovieList: [Movie] = []
     private var isAppending: Bool?
+    
+    private var contentOffsetY: CGFloat = 0
+    private var firstSectionHeight: CGFloat = 256
     
     
     // MARK: - LifeCycle
@@ -40,12 +46,31 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         fetchNowPlayingMovies()
         fetchUpcomingMovies(atFirst: true)
-        configureRefreshControl ()
+        configureRefreshControl()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        firstSectionHeight = decideFirstSectionHeight()
     }
     
     // change status text colors to white
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        let deviceOrientation = deviceHelper.getOrientation()
+        
+        if deviceOrientation == .portrait {
+            statusView.isHidden = true
+        } else if deviceOrientation == .landscape
+                    && statusView.isHidden
+                    && contentOffsetY > (firstSectionHeight - 30) {
+            statusView.isHidden = false
+        }
     }
     
     // MARK: - Services
@@ -58,7 +83,7 @@ class HomeViewController: UIViewController {
                     Logger.error(error.localizedDescription)
                     
                 case .success(let data):
-                    
+                    self?.maxPageNumberOfNowPlaying = data.totalPages
                     self?.dispatchQueueMain.async {
                         self?.nowPlayingMovieList = data.movieList
                         self?.tableView.reloadSections([0], with: .automatic)
@@ -88,7 +113,6 @@ class HomeViewController: UIViewController {
                     self?.dispatchQueueMain.async {
                         self?.addOrAppendMovies(with: data.movieList, atFirst: atFirst)
                     }
-                    Logger.debug("Success data.totalPages:\(data.totalPages)")
                 }
             }
     }
@@ -101,7 +125,7 @@ class HomeViewController: UIViewController {
             
         case false:
             let newList = movieList.compactMap { (movie) -> Movie? in
-                let isSameMovie =  upcomingMovieList.filter { $0.id == movie.id }.first
+                let isSameMovie =  upcomingMovieList.lazy.filter { $0.id == movie.id }.first
                 return isSameMovie == .none ? movie : nil
             }
             let firstIndex = upcomingMovieList.count
@@ -136,6 +160,12 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: - Helpers
+    // 500 x 280
+    private func decideFirstSectionHeight() -> CGFloat {
+        let dimensions = deviceHelper.getDimensions()
+        let generalImageRatio: CGFloat = 500 / 280
+        return dimensions.short / generalImageRatio
+    }
     
     private func configureRefreshControl () {
         // Add the refresh control to your UIScrollView object.
@@ -143,6 +173,16 @@ class HomeViewController: UIViewController {
         tableView.refreshControl?.addTarget(
             self, action: #selector(handleRefreshControl), for: .valueChanged)
     }
+    
+    private func toggleStatusView() {
+        let limit: CGFloat = (firstSectionHeight - 30)
+        if statusView.isHidden && contentOffsetY > limit {
+            self.statusView.isHidden = false
+        } else if !statusView.isHidden && contentOffsetY < limit  {
+            self.statusView.isHidden = true
+        }
+    }
+    
 }
 
 // MARK: - DataSource
@@ -163,6 +203,7 @@ extension HomeViewController: UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCell(for: indexPath) as NowPlayingMovieTableViewCell
             cell.nowPlayingMovieList = nowPlayingMovieList
+            cell.maximumPageNumber = maxPageNumberOfNowPlaying
             return cell
             
         default:
@@ -183,25 +224,24 @@ extension HomeViewController: UITableViewDelegate {
         let movie = upcomingMovieList[indexPath.row]
         Logger.debug(movie.shownTitle)
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 256 : UITableView.automaticDimension
+        return indexPath.section == 0 ? firstSectionHeight : UITableView.automaticDimension
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let contentOffsetY = scrollView.contentOffset.y
-        // TODO: Make this property dynamic
-        let limit: CGFloat = 226
-        if statusView.isHidden && contentOffsetY > limit {
-            self.statusView.isHidden = false
-        } else if !statusView.isHidden && contentOffsetY < limit  {
-            self.statusView.isHidden = true
-        }
+        
+        guard deviceHelper.getOrientation() == .portrait else { return }
+        
+        contentOffsetY = scrollView.contentOffset.y
+        toggleStatusView()
+        
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                    forRowAt indexPath: IndexPath) {
         
-        let reloadingIndex = upcomingMovieList.count - 5
+        let reloadingIndex = upcomingMovieList.count - 8
         
         guard reloadingIndex == indexPath.row && !(isAppending ?? false) else { return }
         isAppending = true
