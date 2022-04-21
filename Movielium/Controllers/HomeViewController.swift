@@ -20,6 +20,7 @@ class HomeViewController: UIViewController {
         didSet {
             tableView.register(cellType: NowPlayingMovieTableViewCell.self)
             tableView.register(cellType: UpcomingMovieTableViewCell.self)
+            tableView.register(cellType: EmptyListTableViewCell.self)
         }
     }
     
@@ -200,11 +201,11 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 1 : upcomingMovieList.count
+        return section == 1 ? upcomingMovieList.count : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -217,9 +218,13 @@ extension HomeViewController: UITableViewDataSource {
             self.delegate = cell
             return cell
             
-        default:
+        case 1:
             let cell = tableView.dequeueReusableCell(for: indexPath) as UpcomingMovieTableViewCell
             cell.movie = upcomingMovieList[indexPath.row]
+            return cell
+            
+        default:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as EmptyListTableViewCell
             return cell
             
         }
@@ -231,17 +236,29 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         guard indexPath.section == 1 else { return }
         
         let movie = upcomingMovieList[indexPath.row]
         let movieDetail = MovieDetail(from: movie)
         let appNavigator: AppNavigator = .shared
         appNavigator.navigate(to: .movieDetail(detail: movieDetail))
-        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? firstSectionHeight : UITableView.automaticDimension
+        switch indexPath.section {
+        case 0: return firstSectionHeight
+            
+        case 1:
+            return nowPlayingMovieList.count == 0
+            ? 0 : UITableView.automaticDimension
+            
+        default:
+            return upcomingMovieList.count == 0 && nowPlayingMovieList.count == 0
+            ? UITableView.automaticDimension : 0
+        }
+        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
