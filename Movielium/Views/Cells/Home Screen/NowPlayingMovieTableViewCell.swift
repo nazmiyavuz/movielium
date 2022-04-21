@@ -30,6 +30,7 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
     private let notificationCenter: NotificationCenter = .default
     private let networkManager: NetworkManager = .shared
     private let dispatchQueueMain: DispatchQueue = .main
+    private let deviceHelper: DeviceHelper = .main
     
     private var shownMovieIndex: Int = 0
     private var pageNumber: Int = 2
@@ -105,9 +106,14 @@ class NowPlayingMovieTableViewCell: UITableViewCell {
         let maxPageNumber = maximumPageNumber ?? 4
         
         if pageNumber == maxPageNumber {
-            pageControl.numberOfPages = nowPlayingMovieList.count
+            dispatchQueueMain.async {
+                self.pageControl.numberOfPages = self.nowPlayingMovieList.count
+            }
+            
         } else if pageNumber == 2 {
-            pageControl.numberOfPages = nowPlayingMovieList.count * maxPageNumber
+            dispatchQueueMain.async { [self] in
+                pageControl.numberOfPages = nowPlayingMovieList.count * maxPageNumber
+            }
         }
         
     }
@@ -154,7 +160,10 @@ extension NowPlayingMovieTableViewCell: UICollectionViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let cgFloatValue = collectionView.contentOffset.x / contentView.frame.width
+        let type = deviceHelper.decideDeviceType()
+        // 744 is the smallest point size for iPads
+        let width = type == .iPhone ? contentView.frame.width : 744
+        let cgFloatValue = collectionView.contentOffset.x / width
         handlePageControlMovements(with: cgFloatValue)
     }
     
@@ -167,8 +176,8 @@ extension NowPlayingMovieTableViewCell: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width,
-                      height: collectionView.frame.height)
+        
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
 }

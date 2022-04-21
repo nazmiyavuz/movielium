@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum DeviceType {
+    case iPhone
+    case iPad
+}
+
+
 enum Orientation {
     case portrait
     case landscape
@@ -26,6 +32,16 @@ final class DeviceHelper {
     private let screen: UIScreen = .main
     
     private init() {}
+    
+    /// recognize device type to handle some user interface
+    /// - Returns:
+    ///     DeviceType
+    ///     1. iPhone
+    ///     2. iPad
+    func decideDeviceType() -> DeviceType {
+        let model = UIDevice.current.model
+        return model == "iPhone" ? .iPhone : .iPad
+    }
     
     /// Recognize orientation for the first loading
     /// - Returns: orientation value of the custom enum type
